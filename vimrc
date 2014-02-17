@@ -74,6 +74,12 @@ set clipboard=unnamed                    "Use system clipboard by default
 
 " ----------- Colors Configuration ----------------------------------
 
+" Theme and colors
+colorscheme lucius
+LuciusDarkHighContrast
+" Change the completion menu color
+"highlight Pmenu guibg=brown gui=bold
+
 " ----------- NERDTree Configuration ----------------------------------
 
 autocmd vimenter * NERDTree

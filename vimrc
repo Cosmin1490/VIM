@@ -8,6 +8,7 @@ set nocp
    set rtp+=~/VIM/bundle/vundle/
    call vundle#rc("~/VIM/bundle")
    
+   Bundle 'xieyu/pyclewn'
    Bundle 'gmarik/vundle'
    Bundle 'scrooloose/nerdtree'   
    Bundle 'majutsushi/tagbar'

@@ -1,12 +1,12 @@
 
 let g:ycm_global_ycm_extra_conf = '~/VIM/ycm_extra_conf.py'
-
+set nocp
 " ----------- Vundle Configuration ----------------------------------
                                               
    filetype off                  " required!
    
    set rtp+=~/VIM/bundle/vundle/
-   call vundle#rc()
+   call vundle#rc("~/VIM/bundle")
    
    Bundle 'gmarik/vundle'
    Bundle 'scrooloose/nerdtree'   

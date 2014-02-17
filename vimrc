@@ -12,9 +12,9 @@ set nocp
    Bundle 'gmarik/vundle'
    Bundle 'scrooloose/nerdtree'   
    Bundle 'majutsushi/tagbar'
-"   Bundle 'scrooloose/syntastic'
+   Bundle 'scrooloose/syntastic'
    Bundle 'Valloric/YouCompleteMe'
-
+"  Bundle 'SirVer/ultisnips'
    filetype plugin indent on     " required!
 
    "
@@ -91,6 +91,11 @@ let g:NERDTreeChDirMode = 2
 
 
 
+" ----------- KeyMapping Configuration ----------------------------------
+nnoremap <UP> ""
+nnoremap <Down> ""
+nnoremap <Left> ""
+nnoremap <Right> ""
 " ----------- TagBar Configuration ----------------------------------
 
 nmap <F8> :TagbarToggle<CR>
@@ -105,11 +110,15 @@ nmap <F8> :TagbarToggle<CR>
 
 " ----------- Syntastic Configuration ----------------------------------
 
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_disabled_filetypes=['html']
-let g:syntastic_enable_signs=1
+let g:syntastic_mode_map = {'mode' : 'passive',
+				\ 'active_filetypes': [],
+				\ 'passive-filetypes': []}
+
+"let g:syntastic_check_on_open=1
+"let g:syntastic_enable_signs=1
+"let g:syntastic_auto_loc_list=1
+"let g:syntastic_disabled_filetypes=['html']
+"let g:syntastic_enable_signs=1
 
 
 " ----------- DIFF Configuration ----------------------------------

@@ -1,11 +1,11 @@
 
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/VIM/ycm_extra_conf.py'
 
 " ----------- Vundle Configuration ----------------------------------
                                               
    filetype off                  " required!
    
-   set rtp+=~/.vim/bundle/vundle/
+   set rtp+=~/VIM/bundle/vundle/
    call vundle#rc()
    
    Bundle 'gmarik/vundle'

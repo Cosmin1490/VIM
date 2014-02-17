@@ -1,5 +1,7 @@
 
 let g:ycm_global_ycm_extra_conf = '~/VIM/ycm_extra_conf.py'
+let g:UltiSnipsExpandTrigger = '<c-j>'
+
 set nocp
 " ----------- Vundle Configuration ----------------------------------
                                               
@@ -14,7 +16,8 @@ set nocp
    Bundle 'majutsushi/tagbar'
    Bundle 'scrooloose/syntastic'
    Bundle 'Valloric/YouCompleteMe'
-"  Bundle 'SirVer/ultisnips'
+   Bundle 'SirVer/ultisnips'
+
    filetype plugin indent on     " required!
 
    "
@@ -50,9 +53,9 @@ set incsearch                            "find the next match as we type the sea
 set hlsearch                             "hilight searches by default
 set ignorecase                           "ignore case when searching
  
-set shiftwidth=2                         "number of spaces to use in each autoindent step
-set tabstop=2                            "two tab spaces
-set softtabstop=2                        "number of spaces to skip or insert when <BS>ing or <Tab>ing
+set shiftwidth=4                         "number of spaces to use in each autoindent step
+set tabstop=4                            "two tab spaces
+set softtabstop=4                        "number of spaces to skip or insert when <BS>ing or <Tab>ing
 set expandtab                            "spaces instead of tabs for better cross-editor compatibility
 set smarttab                             "use shiftwidth and softtabstop to insert or delete (on <BS>) blanks
 set shiftround                           "when at 3 spaces, and I hit > ... go to 4, not 5
@@ -71,34 +74,44 @@ set hidden                               "allow hiding buffers with unsaved chan
 set cmdheight=2                          "make the command line a little taller to hide 'press enter to viem more' text
  
 set clipboard=unnamed                    "Use system clipboard by default
-
+set smartcase
+set noerrorbells
+set novisualbell
+set laststatus=2
 
 " ----------- Colors Configuration ----------------------------------
 
-" Theme and colors
 colorscheme lucius
 LuciusDarkHighContrast
-" Change the completion menu color
-"highlight Pmenu guibg=brown gui=bold
 
 " ----------- NERDTree Configuration ----------------------------------
 
-autocmd vimenter * NERDTree
-autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd vimenter * NERDTree
+"autocmd vimenter * if !argc() | NERDTree | endif
 map <F9> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let g:NERDTreeChDirMode = 2
 
 
+" ----------- TagBar Configuration ----------------------------------
+
+nmap <F8> :TagbarToggle<CR>
 
 " ----------- KeyMapping Configuration ----------------------------------
+
 nnoremap <UP> ""
 nnoremap <Down> ""
 nnoremap <Left> ""
 nnoremap <Right> ""
-" ----------- TagBar Configuration ----------------------------------
 
-nmap <F8> :TagbarToggle<CR>
+nmap <C-t> :tabnew<CR>:copen<CR><F8><F9><C-W><C-W>
+nmap <F2> :tabprevious<CR>
+nmap <F3> :tabnext<CR>
+
+nmap <A-1> :tabmove 0<CR>
+nmap <A-2> :tabmove 1<CR>
+nmap <A-3> :tabmove 2<CR>
+nmap <A-4> :tabmove 3<CR>
 
 
 " ----------- TagList Configuration ----------------------------------
@@ -120,6 +133,18 @@ let g:syntastic_mode_map = {'mode' : 'passive',
 "let g:syntastic_disabled_filetypes=['html']
 "let g:syntastic_enable_signs=1
 
+
+" ----------- Startup Configuration ----------------------------------
+
+function OnStartup()
+  execute 'copen'
+  execute 'TagbarToggle'
+  execute 'NERDTreeToggle'
+  call feedkeys("\<C-W>")
+  call feedkeys("\<C-W>")
+endfunction
+command! OnStartup call OnStartup()
+autocmd vimenter * OnStartup
 
 " ----------- DIFF Configuration ----------------------------------
 

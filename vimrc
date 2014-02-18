@@ -104,7 +104,7 @@ nnoremap <Down> ""
 nnoremap <Left> ""
 nnoremap <Right> ""
 
-nmap <C-t> :tabnew<CR>:copen<CR><F8><F9><C-W><C-W>
+nmap <C-t> :tabnew<CR>
 nmap <F2> :tabprevious<CR>
 nmap <F3> :tabnext<CR>
 
@@ -143,8 +143,20 @@ function OnStartup()
   call feedkeys("\<C-W>")
   call feedkeys("\<C-W>")
 endfunction
+
+function OnShutdown()
+  execute 'cclose'
+  execute 'TagbarToggle'
+  execute 'NERDTreeToggle'
+endfunction
+
 command! OnStartup call OnStartup()
+command! OnShutdown call OnShutdown()
+nmap <F4> :OnStartup<CR>
+nmap <F5> :OnShutdown<CR>
 autocmd vimenter * OnStartup
+"autocmd tabenter * OnStartup
+"autocmd tableave * OnShutdown
 
 " ----------- DIFF Configuration ----------------------------------
 

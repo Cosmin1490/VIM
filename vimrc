@@ -17,7 +17,7 @@ set nocp
    Bundle 'scrooloose/syntastic'
    Bundle 'Valloric/YouCompleteMe'
    Bundle 'SirVer/ultisnips'
-
+   Bundle 'altercation/vim-colors-solarized'
    filetype plugin indent on     " required!
 
    "
@@ -81,8 +81,11 @@ set laststatus=2
 
 " ----------- Colors Configuration ----------------------------------
 
-colorscheme lucius
-LuciusDarkHighContrast
+"colorscheme lucius
+"LuciusDarkHighContrast
+let g:solarized_termcolors=256
+colorscheme solarized
+
 
 " ----------- NERDTree Configuration ----------------------------------
 

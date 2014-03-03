@@ -63,10 +63,23 @@ int main()
 }
 """
 
+makeData = """all: main.cpp 
+	g++ -g main.cpp -std=c++11 -o $filename.exe
+clean: 
+	rm *.exe
+"""
 fileName = sys.argv[1];
 
 s = string.Template(data);
 data = s.substitute(filename=fileName);
+s = string.Template(makeData);
+makeData = s.substitute(filename=fileName);
+
+if not os.path.exists(fileName):
+    os.makedirs(fileName);
+
+
+os.chdir(fileName);
 
 with open("main.cpp", "w") as myFile:
     myFile.write(data);
@@ -76,3 +89,7 @@ with open(fileName + ".in", "w") as myFile:
 
 with open(fileName + ".out", "w") as myFile:
     myFile.write("\n");
+
+with open("Makefile", "w") as myFile:
+    myFile.write(makeData);
+

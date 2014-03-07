@@ -1,5 +1,5 @@
 #!/bin/bash
-find . - name '*.py' \
+find . -name '*.py' \
     -o -name '*.java' \
     -o -iname '*.[CH]' \
     -o -name '*.cpp' \

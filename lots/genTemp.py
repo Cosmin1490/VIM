@@ -63,8 +63,8 @@ int main()
 }
 """
 
-makeData = """all: main.cpp 
-	g++ -g main.cpp -std=c++11 -o $filename.exe
+makeData = """all: $filename.cpp 
+	g++ -g $filename.cpp -Wall -Wextra -std=c++11 -o $filename.exe
 clean: 
 	rm *.exe
 """

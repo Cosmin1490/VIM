@@ -81,7 +81,7 @@ if not os.path.exists(fileName):
 
 os.chdir(fileName);
 
-with open("main.cpp", "w") as myFile:
+with open(fileName + ".cpp", "w") as myFile:
     myFile.write(data);
 
 with open(fileName + ".in", "w") as myFile:

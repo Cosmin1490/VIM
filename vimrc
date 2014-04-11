@@ -18,6 +18,8 @@ set nocp
    Bundle 'Valloric/YouCompleteMe'
    Bundle 'SirVer/ultisnips'
    Bundle 'altercation/vim-colors-solarized'
+   Bundle 'jistr/vim-nerdtree-tabs'
+   Bundle 'kien/ctrlp.vim'
    filetype plugin indent on     " required!
 
    "
@@ -91,7 +93,7 @@ colorscheme solarized
 
 "autocmd vimenter * NERDTree
 "autocmd vimenter * if !argc() | NERDTree | endif
-map <F9> :NERDTreeToggle<CR>
+map <F9> :NERDTreeTabsToggle<CR>
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let g:NERDTreeChDirMode = 2
 
@@ -284,7 +286,7 @@ endif
 function OnStartup()
   execute 'copen'
   execute 'TagbarToggle'
-  execute 'NERDTreeToggle'
+  execute 'NERDTreeTabsToggle'
   call feedkeys("\<C-W>")
   call feedkeys("\<C-W>")
 endfunction
@@ -292,7 +294,7 @@ endfunction
 function OnShutdown()
   execute 'cclose'
   execute 'TagbarToggle'
-  execute 'NERDTreeToggle'
+  execute 'NERDTreeTabsToggle'
 endfunction
 
 command! OnStartup call OnStartup()

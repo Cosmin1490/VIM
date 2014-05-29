@@ -1,25 +1,25 @@
 
 let g:ycm_global_ycm_extra_conf = '~/VIM/ycm_extra_conf.py'
-let g:UltiSnipsExpandTrigger = '<c-j>'
 
 set nocp
 " ----------- Vundle Configuration ----------------------------------
                                               
    filetype off                  " required!
    
-   set rtp+=~/VIM/bundle/vundle/
-   call vundle#rc("~/VIM/bundle")
+   set rtp+=~/VIM/bundle/Vundle.vim/
+   call vundle#begin("~/VIM/bundle")
    
-   Bundle 'xieyu/pyclewn'
-   Bundle 'gmarik/vundle'
-   Bundle 'scrooloose/nerdtree'   
-   Bundle 'majutsushi/tagbar'
-   Bundle 'scrooloose/syntastic'
-   Bundle 'Valloric/YouCompleteMe'
-   Bundle 'SirVer/ultisnips'
-   Bundle 'altercation/vim-colors-solarized'
-   Bundle 'jistr/vim-nerdtree-tabs'
-   Bundle 'kien/ctrlp.vim'
+   Plugin 'gmarik/Vundle.vim'
+   Plugin 'scrooloose/nerdtree'   
+   Plugin 'majutsushi/tagbar'
+   Plugin 'scrooloose/syntastic'
+   Plugin 'Valloric/YouCompleteMe'
+   Plugin 'SirVer/ultisnips'
+   Plugin 'altercation/vim-colors-solarized'
+   Plugin 'jistr/vim-nerdtree-tabs'
+   Plugin 'kien/ctrlp.vim'
+
+   call vundle#end()             " required!
    filetype plugin indent on     " required!
 
    "

@@ -1,4 +1,7 @@
 
+
+source $ADMIN_SCRIPTS/master.vimrc
+
 let g:ycm_global_ycm_extra_conf = '~/VIM/ycm_extra_conf.py'
 
 set nocp
@@ -55,9 +58,9 @@ set incsearch                            "find the next match as we type the sea
 set hlsearch                             "hilight searches by default
 set ignorecase                           "ignore case when searching
  
-set shiftwidth=4                         "number of spaces to use in each autoindent step
-set tabstop=4                            "two tab spaces
-set softtabstop=4                        "number of spaces to skip or insert when <BS>ing or <Tab>ing
+set shiftwidth=2                         "number of spaces to use in each autoindent step
+set tabstop=2                            "two tab spaces
+set softtabstop=2                        "number of spaces to skip or insert when <BS>ing or <Tab>ing
 set expandtab                            "spaces instead of tabs for better cross-editor compatibility
 set smarttab                             "use shiftwidth and softtabstop to insert or delete (on <BS>) blanks
 set shiftround                           "when at 3 spaces, and I hit > ... go to 4, not 5
@@ -333,6 +336,20 @@ function MyDiff()
 endfunction
 
 " ----------- Ultisnips + YCM Configuration ----------------------------------
+
+
+let g:ycm_autoclose_preview_window_after_completion = 1
+nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
+nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
+
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_error_symbol = 'x'
+let g:ycm_warning_symbol = '!'
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_echo_current_diagnostic = 1
 
 function! g:UltiSnips_Complete()
     call UltiSnips#ExpandSnippet()

@@ -16,7 +16,7 @@ set nocp
    Plugin 'scrooloose/nerdtree'   
    Plugin 'majutsushi/tagbar'
    Plugin 'scrooloose/syntastic'
-   Plugin 'Valloric/YouCompleteMe'
+   "Plugin 'Valloric/YouCompleteMe'
    Plugin 'SirVer/ultisnips'
    Plugin 'altercation/vim-colors-solarized'
    Plugin 'jistr/vim-nerdtree-tabs'
@@ -86,9 +86,6 @@ set laststatus=2
 
 " ----------- Colors Configuration ----------------------------------
 
-"colorscheme lucius
-"LuciusDarkHighContrast
-let g:solarized_termcolors=256
 colorscheme solarized
 
 
@@ -336,14 +333,16 @@ function MyDiff()
 endfunction
 
 " ----------- Ultisnips + YCM Configuration ----------------------------------
-
-
+"
+let g:ycm_always_populate_location_list = 1
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 
+let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_show_diagnostics_ui = 1
 let g:ycm_error_symbol = 'x'
 let g:ycm_warning_symbol = '!'

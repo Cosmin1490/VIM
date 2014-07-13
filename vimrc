@@ -55,9 +55,9 @@ set incsearch                            "find the next match as we type the sea
 set hlsearch                             "hilight searches by default
 set ignorecase                           "ignore case when searching
  
-set shiftwidth=4                         "number of spaces to use in each autoindent step
-set tabstop=4                            "two tab spaces
-set softtabstop=4                        "number of spaces to skip or insert when <BS>ing or <Tab>ing
+set shiftwidth=2                         "number of spaces to use in each autoindent step
+set tabstop=2                            "two tab spaces
+set softtabstop=2                        "number of spaces to skip or insert when <BS>ing or <Tab>ing
 set expandtab                            "spaces instead of tabs for better cross-editor compatibility
 set smarttab                             "use shiftwidth and softtabstop to insert or delete (on <BS>) blanks
 set shiftround                           "when at 3 spaces, and I hit > ... go to 4, not 5
@@ -83,11 +83,7 @@ set laststatus=2
 
 " ----------- Colors Configuration ----------------------------------
 
-"colorscheme lucius
-"LuciusDarkHighContrast
-let g:solarized_termcolors=256
 colorscheme solarized
-
 
 " ----------- NERDTree Configuration ----------------------------------
 

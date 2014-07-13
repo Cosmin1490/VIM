@@ -1,4 +1,7 @@
 
+
+source $ADMIN_SCRIPTS/master.vimrc
+
 let g:ycm_global_ycm_extra_conf = '~/VIM/ycm_extra_conf.py'
 
 set nocp
@@ -13,7 +16,7 @@ set nocp
    Plugin 'scrooloose/nerdtree'   
    Plugin 'majutsushi/tagbar'
    Plugin 'scrooloose/syntastic'
-   Plugin 'Valloric/YouCompleteMe'
+   "Plugin 'Valloric/YouCompleteMe'
    Plugin 'SirVer/ultisnips'
    Plugin 'altercation/vim-colors-solarized'
    Plugin 'jistr/vim-nerdtree-tabs'
@@ -329,6 +332,22 @@ function MyDiff()
 endfunction
 
 " ----------- Ultisnips + YCM Configuration ----------------------------------
+"
+let g:ycm_always_populate_location_list = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
+nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
+
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_error_symbol = 'x'
+let g:ycm_warning_symbol = '!'
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_echo_current_diagnostic = 1
 
 function! g:UltiSnips_Complete()
     call UltiSnips#ExpandSnippet()

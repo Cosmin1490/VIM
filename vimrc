@@ -1,7 +1,5 @@
 
 
-source $ADMIN_SCRIPTS/master.vimrc
-
 let g:ycm_global_ycm_extra_conf = '~/VIM/ycm_extra_conf.py'
 
 set nocp
@@ -16,7 +14,7 @@ set nocp
    Plugin 'scrooloose/nerdtree'   
    Plugin 'majutsushi/tagbar'
    Plugin 'scrooloose/syntastic'
-   "Plugin 'Valloric/YouCompleteMe'
+   Plugin 'Valloric/YouCompleteMe'
    Plugin 'SirVer/ultisnips'
    Plugin 'altercation/vim-colors-solarized'
    Plugin 'jistr/vim-nerdtree-tabs'

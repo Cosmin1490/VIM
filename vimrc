@@ -130,7 +130,7 @@ nmap <A-4> :tabmove 3<CR>
 " ----------- Syntastic Configuration ----------------------------------
 
 let g:syntastic_mode_map = {'mode' : 'passive',
-				\ 'active_filetypes': [],
+				\ 'active_filetypes': ['scala'],
 				\ 'passive-filetypes': []}
 
 "let g:syntastic_check_on_open=1

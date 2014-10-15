@@ -19,6 +19,8 @@ set nocp
    Plugin 'altercation/vim-colors-solarized'
    Plugin 'jistr/vim-nerdtree-tabs'
    Plugin 'kien/ctrlp.vim'
+   Plugin 'derekwyatt/vim-scala'
+   Plugin 'mustache/vim-mustache-handlebars'
 
    call vundle#end()             " required!
    filetype plugin indent on     " required!

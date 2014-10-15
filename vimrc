@@ -84,6 +84,8 @@ set noerrorbells
 set novisualbell
 set laststatus=2
 
+set tags=tags;/
+
 " ----------- Colors Configuration ----------------------------------
 
 colorscheme solarized

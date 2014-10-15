@@ -65,6 +65,9 @@ int main()
 
 makeData = """all: $filename.cpp 
 	g++ -g $filename.cpp -Wall -Wextra -std=c++11 -o $filename.exe
+run: $filename.cpp
+	g++ $filename.cpp -Wall -Wextra -std=c++11 -o $filename.exe
+	./$filename.exe
 clean: 
 	rm *.exe
 """

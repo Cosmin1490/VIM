@@ -21,6 +21,7 @@ set nocp
    Plugin 'kien/ctrlp.vim'
    Plugin 'derekwyatt/vim-scala'
    Plugin 'mustache/vim-mustache-handlebars'
+   Plugin 'wesQ3/vim-windowswap'
 
    call vundle#end()             " required!
    filetype plugin indent on     " required!

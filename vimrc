@@ -374,3 +374,11 @@ let g:UltiSnipsListSnippets="<c-e>"
 " and close the selection list, same as other IDEs.
 " CONFLICT with some plugins like tpope/Endwise
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" ----------- Window Navigation Configuration ---------------------------------
+let i = 1
+while i <= 9
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    let i = i + 1
+endwhile
+

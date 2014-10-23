@@ -16,6 +16,7 @@ set nocp
    Plugin 'scrooloose/syntastic'
    Plugin 'Valloric/YouCompleteMe'
    Plugin 'SirVer/ultisnips'
+   Plugin 'honza/vim-snippets'
    Plugin 'altercation/vim-colors-solarized'
    Plugin 'jistr/vim-nerdtree-tabs'
    Plugin 'kien/ctrlp.vim'

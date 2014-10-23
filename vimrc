@@ -382,3 +382,5 @@ while i <= 9
     let i = i + 1
 endwhile
 
+" ----------- CTRLP Configuration -------------------------------------------
+let g:ctrlp_max_files=0

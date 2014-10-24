@@ -12,17 +12,17 @@ set nocp
    
    Plugin 'gmarik/Vundle.vim'
    Plugin 'scrooloose/nerdtree'   
+   Plugin 'jistr/vim-nerdtree-tabs'
    Plugin 'majutsushi/tagbar'
    Plugin 'scrooloose/syntastic'
    Plugin 'Valloric/YouCompleteMe'
    Plugin 'SirVer/ultisnips'
    Plugin 'honza/vim-snippets'
-   Plugin 'altercation/vim-colors-solarized'
-   Plugin 'jistr/vim-nerdtree-tabs'
+   Plugin 'wesQ3/vim-windowswap'
    Plugin 'kien/ctrlp.vim'
    Plugin 'derekwyatt/vim-scala'
    Plugin 'mustache/vim-mustache-handlebars'
-   Plugin 'wesQ3/vim-windowswap'
+   Plugin 'altercation/vim-colors-solarized'
 
    call vundle#end()             " required!
    filetype plugin indent on     " required!

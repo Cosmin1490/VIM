@@ -29,13 +29,13 @@ set nocp
 
    "
    "  Brief help
-   " :BundleList          - list configured bundles
-   " :BundleInstall(!)    - install (update) bundles
-   " :BundleSearch(!) foo - search (or refresh cache first) for foo
-   " :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+   " :PluginList          - list configured bundles
+   " :PluginInstall(!)    - install (update) bundles
+   " :PluginSearch(!) foo - search (or refresh cache first) for foo
+   " :PluginClean(!)      - confirm (or auto-approve) removal of unused bundles
    "
    " see :h vundle for more details or wiki for FAQ
-   " NOTE: comments after Bundle commands are not allowed.
+   " NOTE: comments after Plugin commands are not allowed.
 
 " ----------- Main Configuration ----------------------------------
 

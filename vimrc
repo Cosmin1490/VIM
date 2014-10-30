@@ -45,8 +45,6 @@ filetype plugin indent on                "enable detection, plugins and indentin
 syntax on                                "Turn on syntax highlighting
 set ruler                                "Turn on the ruler
 set number                               "Show line numbers
-"set cursorline                           "underline the current line in the file
-"set cursorcolumn                         "highlight the current column. Visible in GUI mode only.
  
 set background=dark                      "make vim use colors that look good on a dark background
  
@@ -94,16 +92,12 @@ colorscheme solarized
 
 " ----------- NERDTree Configuration ----------------------------------
 
-"autocmd vimenter * NERDTree
-"autocmd vimenter * if !argc() | NERDTree | endif
-map <F9> :NERDTreeTabsToggle<CR>
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+map <F8> :NERDTreeTabsToggle<CR>
 let g:NERDTreeChDirMode = 2
-
 
 " ----------- TagBar Configuration ----------------------------------
 
-nmap <F8> :TagbarToggle<CR>
+nmap <F9> :TagbarToggle<CR>
 
 " ----------- KeyMapping Configuration ----------------------------------
 
@@ -120,14 +114,6 @@ nmap <A-1> :tabmove 0<CR>
 nmap <A-2> :tabmove 1<CR>
 nmap <A-3> :tabmove 2<CR>
 nmap <A-4> :tabmove 3<CR>
-
-
-" ----------- TagList Configuration ----------------------------------
-
-"let Tlist_Use_Right_Window = 1
-"autocmd vimenter * TlistToggle
-"let Tlist_Display_Prototype = 1
-
 
 " ----------- Syntastic Configuration ----------------------------------
 
@@ -304,42 +290,16 @@ command! OnStartup call OnStartup()
 command! OnShutdown call OnShutdown()
 nmap <F4> :OnStartup<CR>
 nmap <F5> :OnShutdown<CR>
-autocmd vimenter * OnStartup
-"autocmd tabenter * OnStartup
-"autocmd tableave * OnShutdown
 
-" ----------- DIFF Configuration ----------------------------------
+autocmd vimenter * if !argc() | execute 'OnStartup' | endif
 
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
 
 " ----------- Ultisnips + YCM Configuration ----------------------------------
 "
 let g:ycm_always_populate_location_list = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
+
 nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
@@ -371,12 +331,10 @@ endfunction
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-e>"
-" this mapping Enter key to <C-y> to chose the current highlight item 
-" and close the selection list, same as other IDEs.
-" CONFLICT with some plugins like tpope/Endwise
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " ----------- Window Navigation Configuration ---------------------------------
+"
 let i = 1
 while i <= 9
     execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
@@ -384,4 +342,32 @@ while i <= 9
 endwhile
 
 " ----------- CTRLP Configuration -------------------------------------------
+
 let g:ctrlp_max_files=0
+
+" ----------- DIFF Configuration ----------------------------------
+
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction

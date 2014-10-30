@@ -1,3 +1,6 @@
 ##generic files to ignore
+bundle/*
+!bundle/Vundle.vim
+GdbPrinters/*
 *.swp
 *.pyc

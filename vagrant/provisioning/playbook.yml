@@ -1,0 +1,10 @@
+---
+  - hosts: phabricators
+    sudo: yes
+    roles:
+      - phabricator
+  - hosts: devservers
+    sudo: yes
+    roles:
+      - devserver
+

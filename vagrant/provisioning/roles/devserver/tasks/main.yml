@@ -6,9 +6,26 @@
     - vim
     - ctags
     - git
-    - svn
+    - subversion
     - python-dev
     - g++
     - make
     - cmake
+
+- name: Copy swap file script
+  copy: src=createSwapFile.sh dest=/home/vagrant owner=vagrant mode=0755
+- name: Execute swap file script
+  command: /home/vagrant/createSwapFile.sh
+- name: Delete swap file script
+  command: rm /home/vagrant/createSwapFile.sh
+
+- name: Clone VIM
+  git: repo=https://github.com/Cosmin1490/VIM dest=/home/vagrant/VIM
+  sudo: no
+
+#- name: Set Up Environment Variables
+#- name: Install Vim Plugins
+#- name: Compile YCM
+
+
 

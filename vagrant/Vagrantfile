@@ -34,7 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :phabricator do |cfg|
     cfg.vm.network :private_network, ip: "192.168.0.100"
-    cfg.vm.host_name = "phabricator" + '.' + domain
+    cfg.vm.hostname = "phabricator" + '.' + domain
     cfg.vm.provider :virtualbox do |vbox|
       vbox.customize ["modifyvm", :id, "--name", "phabricator"]
       vbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -44,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :devserver do |cfg|
     cfg.vm.network :private_network, ip: "192.168.0.200"
-    cfg.vm.host_name = "devserver" + '.' + domain
+    cfg.vm.hostname = "devserver" + '.' + domain
     cfg.vm.provider :virtualbox do |vbox|
       vbox.customize ["modifyvm", :id, "--name", "devserver"]
       vbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -54,7 +54,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provisioning/playbook.yml"
-    ansible.inventory_path = "provisioning/inventory"
     ansible.sudo = true
     ansible.groups = {
       "phabricators" => ["phabricator"],

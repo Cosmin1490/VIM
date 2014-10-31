@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/local/bin/vim -u ~/VIM/portable-vim "$@"
+/usr/bin/vim -u ~/VIM/portable-vim "$@"

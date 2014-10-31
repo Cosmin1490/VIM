@@ -1,4 +1,7 @@
 ---
+- name: Update System
+  apt: upgrade=full update-cache=yes
+
 - name: Install Basics
   apt: pkg={{ item }} state=installed update_cache=true
   with_items:
@@ -9,8 +12,17 @@
     - subversion
     - python-dev
     - g++
+    - clang-3.5
     - make
     - cmake
+
+- name: Install Java and Scala
+  apt: pkg={{ item }} state=installed update_cache=true
+  with_items:
+    - openjdk-7-jdk
+    - scala
+    - ant
+    - maven
 
 - name: Copy swap file script
   copy: src=createSwapFile.sh dest=/home/vagrant owner=vagrant mode=0755
@@ -26,6 +38,7 @@
 #- name: Set Up Environment Variables
 #- name: Install Vim Plugins
 #- name: Compile YCM
+#- name: Setup Eclipse and Eclim
 
 
 

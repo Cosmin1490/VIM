@@ -24,6 +24,15 @@
     - ant
     - maven
 
+- name: Install XServer
+  apt: pkg={{ item }} state=installed update_cache=true
+  with_items:
+    - xvfb
+
+#- name: Start XServer
+#  command:  Xvfb :1 -screen 0 1024x768x24 &
+#  sudo: no
+
 - name: Copy swap file script
   copy: src=createSwapFile.sh dest=/home/vagrant owner=vagrant mode=0755
 - name: Execute swap file script
@@ -39,6 +48,3 @@
 #- name: Install Vim Plugins
 #- name: Compile YCM
 #- name: Setup Eclipse and Eclim
-
-
-

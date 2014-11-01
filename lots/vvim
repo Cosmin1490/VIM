@@ -1,2 +1,12 @@
-#!/bin/bash
-/usr/bin/vim -u ~/VIM/portable-vim "$@"
+#!/usr/bin/python
+import platform
+import subprocess
+import sys
+
+if platform.system() == "Darwin":
+    path = "/usr/local/bin/vim"
+else:
+    path = "/usr/bin/vim"
+
+args = [str(x) for x in sys.argv[1:]]
+subprocess.call([path, "-u", " ~/VIM/portable-vim"] + args)

@@ -296,6 +296,19 @@ nmap <F5> :OnShutdown<CR>
 
 autocmd vimenter * if !argc() | execute 'OnStartup' | endif
 
+" ----------- Eclim Configuration ----------------------------------
+set omnifunc=syntaxcomplete#Complete
+let g:EclimCompletionMethod = 'omnifunc'
+
+nnoremap <silent> <buffer> <Leader>ji :JavaImport<CR>
+nnoremap <silent> <buffer> <Leader>jd :JavaDocSearch -x declarations<CR>
+nnoremap <silent> <buffer> <Leader>jc :JavaCorrect<CR>
+nnoremap <silent> <buffer> <Leader>js :JavaSearchContext<CR>
+
+nnoremap <silent> <buffer> <Leader>jr :JavaRename<CR>
+
+nnoremap <silent> <buffer> <Leader>ss :ScalaSearch -a edit<CR>
+nnoremap <silent> <buffer> <Leader>si :ScalaImport<CR>
 
 " ----------- Ultisnips + YCM Configuration ----------------------------------
 "
@@ -303,10 +316,10 @@ let g:ycm_always_populate_location_list = 1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
-nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
+nnoremap <Leader>y :YcmForceCompileAndDiagnostics<CR>
+nnoremap <Leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <Leader>pd :YcmCompleter GoToDefinition<CR>
+nnoremap <Leader>pc :YcmCompleter GoToDeclaration<CR>
 
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_show_diagnostics_ui = 1

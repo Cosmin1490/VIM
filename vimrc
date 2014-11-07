@@ -39,7 +39,6 @@ set nocp
 
 " ----------- Main Configuration ----------------------------------
 
-
 set nocompatible                         "don't need to keep compatibility with Vi
 filetype plugin indent on                "enable detection, plugins and indenting in one step
 syntax on                                "Turn on syntax highlighting
@@ -85,6 +84,10 @@ set novisualbell
 set laststatus=2
 
 set tags=tags;/
+
+if filereadable("firstTime")
+  finish
+endif
 
 " ----------- Colors Configuration ----------------------------------
 

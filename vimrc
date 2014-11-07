@@ -299,6 +299,7 @@ autocmd vimenter * if !argc() | execute 'OnStartup' | endif
 " ----------- Eclim Configuration ----------------------------------
 set omnifunc=syntaxcomplete#Complete
 let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimDefaultFileOpenAction = 'edit'
 
 nnoremap <silent> <buffer> <Leader>ji :JavaImport<CR>
 nnoremap <silent> <buffer> <Leader>jd :JavaDocSearch -x declarations<CR>

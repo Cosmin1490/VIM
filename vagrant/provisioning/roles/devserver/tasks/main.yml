@@ -84,8 +84,10 @@
 - name: Clone Eclim
   command: git clone https://github.com/ervandew/eclim
   sudo: no
-
-#- name: Clone Eclim
-#  git: repo=https://github.com/ervandew/eclim dest=/home/vagrant/eclim accept_hostkey=True
-#  sudo: no
+- name: Install Eclipse Plugins
+  command: ./installEclim.sh
+  sudo: no
+- name: Install Eclim
+  command: chdir=/home/vagrant/eclim ant -Declipse.home=/home/vagrant/eclipse
+  sudo: no
 

@@ -33,6 +33,7 @@
 #  command:  Xvfb :1 -screen 0 1024x768x24 &
 #  sudo: no
 
+# Create SwapFile
 - name: Copy swap file script
   copy: src=createSwapFile.sh dest=/home/vagrant owner=vagrant mode=0755
 - name: Execute swap file script
@@ -40,11 +41,32 @@
 - name: Delete swap file script
   command: rm /home/vagrant/createSwapFile.sh
 
+# Install Eclipse
+- name: Download eclipse-luna-standard
+  command: wget http://mirrors.ibiblio.org/pub/mirrors/eclipse/technology/epp/downloads/release/luna/R/eclipse-standard-luna-R-linux-gtk.tar.gz
+  sudo: no
+- name: Untar eclipse
+  command: tar -xzf eclipse-standard-luna-R-linux-gtk.tar.gz
+  sudo: no
+- name: Remove eclipse tar
+  command: rm eclipse-standard-luna-R-linux-gtk.tar.gz
+  sudo: no
+
+# Install Vim
 - name: Clone VIM
   git: repo=https://github.com/Cosmin1490/VIM dest=/home/vagrant/VIM
   sudo: no
+- name: Touch cbalan_vim_first_time
+  command: touch cbalan_vim_first_time
+  sudo: no
+- name: Download Vim Plugins
+  command: /home/vagrant/VIM/lots/vvim "+PluginInstall" "+qall"
+  sudo: no
+- name: remove cbalan_vim_first_time
+  command: rm cbalan_vim_first_time
+  sudo: no
+- name: Compile YCM
+  command: chdir=/home/vagrant/VIM ./compileYcm.sh
 
 #- name: Set Up Environment Variables
-#- name: Install Vim Plugins
-#- name: Compile YCM
-#- name: Setup Eclipse and Eclim
+#- name: Eclim

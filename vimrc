@@ -85,7 +85,7 @@ set laststatus=2
 
 set tags=tags;/
 
-if filereadable("firstTime")
+if filereadable("cbalan_vim_first_time")
   finish
 endif
 

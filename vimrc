@@ -300,15 +300,15 @@ autocmd vimenter * if !argc() | execute 'OnStartup' | endif
 set omnifunc=syntaxcomplete#Complete
 let g:EclimCompletionMethod = 'omnifunc'
 
-nnoremap <silent> <buffer> <Leader>ji :JavaImport<CR>
-nnoremap <silent> <buffer> <Leader>jd :JavaDocSearch -x declarations<CR>
-nnoremap <silent> <buffer> <Leader>jc :JavaCorrect<CR>
-nnoremap <silent> <buffer> <Leader>js :JavaSearchContext<CR>
+nnoremap <Leader>ji :JavaImport<CR>
+nnoremap <Leader>jd :JavaDocSearch -x declarations<CR>
+nnoremap <Leader>jc :JavaCorrect<CR>
+nnoremap <Leader>js :JavaSearchContext<CR>
 
-nnoremap <silent> <buffer> <Leader>jr :JavaRename<CR>
+nnoremap <Leader>jr :JavaRename<CR>
 
-nnoremap <silent> <buffer> <Leader>ss :ScalaSearch -a edit<CR>
-nnoremap <silent> <buffer> <Leader>si :ScalaImport<CR>
+nnoremap <Leader>ss :ScalaSearch -a edit<CR>
+nnoremap <Leader>si :ScalaImport<CR>
 
 " ----------- Ultisnips + YCM Configuration ----------------------------------
 "

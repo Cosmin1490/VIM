@@ -65,24 +65,23 @@
   sudo: no
 - name: Compile YCM
   command: chdir=/home/vagrant/VIM ./compileYcm.sh
-  sudo: no
 
 # Install Eclipse
 - name: Download eclipse-luna-standard
-  command: wget http://mirrors.ibiblio.org/pub/mirrors/eclipse/technology/epp/downloads/release/luna/R/eclipse-standard-luna-R-linux-gtk.tar.gz
+  command: wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/luna/SR1/eclipse-standard-luna-SR1-linux-gtk-x86_64.tar.gz
   sudo: no
 - name: Untar eclipse
-  command: tar -xzf eclipse-standard-luna-R-linux-gtk.tar.gz
+  command: tar -xzf eclipse-standard-luna-SR1-linux-gtk-x86_64.tar.gz
   sudo: no
 - name: Remove eclipse tar
-  command: rm eclipse-standard-luna-R-linux-gtk.tar.gz
+  command: rm eclipse-standard-luna-SR1-linux-gtk-x86_64.tar.gz
   sudo: no
 
 # Install Eclim
-- name: Copy swap file script
+- name: Copy installEclim.sh script
   copy: src=installEclim.sh dest=/home/vagrant owner=vagrant mode=0755
   sudo: no
+- name: Clone Eclim
+  git: repo=https://github.com/ervandew/eclim.git dest=/home/vagrant/eclim
+  sudo: no
 
-
-#- name: Set Up Environment Variables
-#- name: Eclim

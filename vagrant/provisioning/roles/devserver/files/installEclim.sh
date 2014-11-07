@@ -17,7 +17,9 @@ DISPLAY=:1 ./eclipse/eclipse -nosplash -consolelog -debug \
   -repository http://download.scala-ide.org/sdk/lithium/e44/scala211/dev/site \
   -installIU org.scala-ide.sdt.feature.feature.group
 
-java \
-  -Dvim.skip=true \
-  -Declipse.home=/home/vagrant/eclipse \
-  -jar eclim_2.5.5.jar install
+#java \
+#  -Dvim.skip=true \
+#  -Declipse.home=/home/vagrant/eclipse \
+#  -jar eclim_2.5.5.jar install
+
+DISPLAY=:1 ./eclipse/eclimd -b

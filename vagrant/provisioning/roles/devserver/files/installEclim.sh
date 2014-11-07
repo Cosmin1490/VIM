@@ -22,4 +22,4 @@ DISPLAY=:1 ./eclipse/eclipse -nosplash -consolelog -debug \
 #  -Declipse.home=/home/vagrant/eclipse \
 #  -jar eclim_2.5.5.jar install
 
-DISPLAY=:1 ./eclipse/eclimd -b
+#DISPLAY=:1 ./eclipse/eclimd -b

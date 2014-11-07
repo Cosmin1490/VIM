@@ -82,6 +82,10 @@
   copy: src=installEclim.sh dest=/home/vagrant owner=vagrant mode=0755
   sudo: no
 - name: Clone Eclim
-  git: repo=https://github.com/ervandew/eclim.git dest=/home/vagrant/eclim
+  command: git clone https://github.com/ervandew/eclim
   sudo: no
+
+#- name: Clone Eclim
+#  git: repo=https://github.com/ervandew/eclim dest=/home/vagrant/eclim accept_hostkey=True
+#  sudo: no
 

@@ -2,6 +2,24 @@
 - name: Update System
   apt: upgrade=full update-cache=yes
 
+- name: Install x86 libs
+  apt: pkg={{ item }} state=installed update_cache=true
+  with_items:
+    - libc6-i386
+    - lib32stdc++6
+    - lib32gcc1
+    - lib32ncurses5
+    - lib32z1
+
+- name: Install XServer
+  apt: pkg={{ item }} state=installed update_cache=true
+  with_items:
+    - xvfb
+
+#- name: Start XServer
+#  command:  Xvfb :1 -screen 0 1024x768x24 &
+#  sudo: no
+
 - name: Install Basics
   apt: pkg={{ item }} state=installed update_cache=true
   with_items:
@@ -23,15 +41,6 @@
     - scala
     - ant
     - maven
-
-- name: Install XServer
-  apt: pkg={{ item }} state=installed update_cache=true
-  with_items:
-    - xvfb
-
-#- name: Start XServer
-#  command:  Xvfb :1 -screen 0 1024x768x24 &
-#  sudo: no
 
 # Create SwapFile
 - name: Copy swap file script

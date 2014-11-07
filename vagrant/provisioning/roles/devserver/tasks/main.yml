@@ -67,6 +67,7 @@
   sudo: no
 - name: Compile YCM
   command: chdir=/home/vagrant/VIM ./compileYcm.sh
+  sudo: no
 
 #- name: Set Up Environment Variables
 #- name: Eclim

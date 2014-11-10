@@ -97,6 +97,7 @@ colorscheme solarized
 
 map <F8> :NERDTreeTabsToggle<CR>
 let g:NERDTreeChDirMode = 2
+let g:NERDTreeHighlightCursorLine = 1
 
 " ----------- TagBar Configuration ----------------------------------
 

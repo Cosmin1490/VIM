@@ -33,6 +33,7 @@
     - clang-3.5
     - make
     - cmake
+    - cgdb
 
 - name: Install Java and Scala
   apt: pkg={{ item }} state=installed update_cache=true

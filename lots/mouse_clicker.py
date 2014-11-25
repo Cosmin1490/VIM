@@ -31,10 +31,11 @@ def mouseClick(x, y):
         mouseEvent(kCGEventLeftMouseUp, x, y);
 
 if __name__ == "__main__":
+    time.sleep(10)
     while True:
-        for j in xrange(0, 50):
+        for j in xrange(0, 100):
             cpos = mousePosition()
             mouseClick(cpos.x, cpos.y)
-            time.sleep(0.1)
+            time.sleep(0.05)
         time.sleep(5)
         

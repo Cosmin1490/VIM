@@ -13,8 +13,7 @@ from Quartz.CoreGraphics import kCGHIDEventTap
 
 def mousePosition():
     theEvent = CGEventCreate(None)
-    currentPos = CGEventGetLocation(theEvent)
-    return (currentPos.x, currentPos.y)
+    return CGEventGetLocation(theEvent)
 
 def mouseEvent(type, x, y):
         theEvent = CGEventCreateMouseEvent(

@@ -33,9 +33,9 @@ def mouseClick(x, y):
 if __name__ == "__main__":
     time.sleep(10)
     while True:
-        for j in xrange(0, 100):
+        for j in xrange(0, 1000):
             cpos = mousePosition()
             mouseClick(cpos.x, cpos.y)
-            time.sleep(0.05)
+            time.sleep(0.03)
         time.sleep(5)
         

@@ -312,6 +312,11 @@ nnoremap <Leader>jr :JavaRename<CR>
 nnoremap <Leader>ss :ScalaSearch<CR>
 nnoremap <Leader>si :ScalaImport<CR>
 
+" ----------- Makefile ------------------------------------------------------
+nnoremap <Leader>mr :make run<CR>
+nnoremap <Leader>mc :make clean<CR>
+
+"
 " ----------- Ultisnips + YCM Configuration ----------------------------------
 "
 let g:ycm_always_populate_location_list = 1

@@ -30,8 +30,10 @@ data = """#include <vector>
 #include <ctime>
 #include <fstream>
 #include <iterator>
-#include <random>
 #include <assert.h>
+#include <random>
+#include <unordered_map>
+#include <unordered_set>
 using namespace std;
 
 const string file = "$filename";
@@ -46,11 +48,11 @@ const int INF = 0x3f3f3f3f;
 int main()
 {
 #ifdef ONLINE_JUDGE
-	ostream &fout = cout;
-	istream &fin = cin;
+    ostream &fout = cout;
+    istream &fin = cin;
 #else
-	fstream fin(infile.c_str(), ios::in);
-	fstream fout(outfile.c_str(), ios::out);
+    fstream fin(infile.c_str(), ios::in);
+    fstream fout(outfile.c_str(), ios::out);
 #endif	
 
     /*code*/
@@ -58,7 +60,7 @@ int main()
 #ifdef ONLINE_JUDGE
 #else
     fout.close();
-	fin.close();
+    fin.close();
 #endif
 }
 """

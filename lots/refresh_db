@@ -1,0 +1,25 @@
+#!/usr/bin/python
+import subprocess
+
+def call_ps_aux():
+    ps = subprocess.Popen(["ps", "aux"], stdout=subprocess.PIPE)
+    ps_output = ps.communicate()[0]
+    return ps_output
+
+def call_grep_on_text(text, search_item):
+    grep = subprocess.Popen(["grep", search_item], stdin=subprocess.PIPE, stdout=subprocess.PIPE);
+    grep_output = grep.communicate(input=text)[0]
+    return grep_output.splitlines()
+
+names = ["vim", "vim"]
+ps_output = call_ps_aux()
+pids = [x.split()[1] for name in names for x in (call_grep_on_text(ps_output, name))]
+
+commands = []
+
+for pid in pids:
+    commands.append("sudo kill " + pid)
+
+for command in commands:
+    print command
+

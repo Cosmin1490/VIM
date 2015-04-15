@@ -23,6 +23,8 @@ set nocp
    Plugin 'derekwyatt/vim-scala'
    Plugin 'mustache/vim-mustache-handlebars'
    Plugin 'altercation/vim-colors-solarized'
+   Plugin 'tfnico/vim-gradle'
+   Plugin 'kchmck/vim-coffee-script'
 
    call vundle#end()             " required!
    filetype plugin indent on     " required!

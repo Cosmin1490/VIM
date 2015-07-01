@@ -370,7 +370,9 @@ endwhile
 " ----------- CTRLP Configuration -------------------------------------------
 
 let g:ctrlp_max_files=0
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/build/*,*/.ecbuild/*,*/ecbuild/*
 
+"let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 " ----------- DIFF Configuration ----------------------------------
 
 "set diffexpr=MyDiff()

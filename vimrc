@@ -21,6 +21,7 @@ set nocp
         \ }
      \ }
 
+   NeoBundle 'godlygeek/tabular.git'
    NeoBundle 'bling/vim-airline'
    NeoBundle 'tpope/vim-fugitive.git'
    NeoBundle 'scrooloose/nerdtree'

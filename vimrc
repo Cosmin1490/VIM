@@ -1,5 +1,4 @@
 
-
 let g:ycm_global_ycm_extra_conf = '~/VIM/ycm_extra_conf.py'
 let g:neobundle#install_process_timeout = 2500
 
@@ -42,17 +41,6 @@ set nocp
    NeoBundle 'marijnh/tern_for_vim'
 
    call neobundle#end()          " required!
-   filetype plugin indent on     " required!
-
-   "
-   "  Brief help
-   " :PluginList          - list configured bundles
-   " :PluginInstall(!)    - install (update) bundles
-   " :PluginSearch(!) foo - search (or refresh cache first) for foo
-   " :PluginClean(!)      - confirm (or auto-approve) removal of unused bundles
-   "
-   " see :h vundle for more details or wiki for FAQ
-   " NOTE: comments after Plugin commands are not allowed.
 
 " ----------- Main Configuration ----------------------------------
 

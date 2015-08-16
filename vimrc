@@ -25,6 +25,7 @@ set nocp
    Plugin 'altercation/vim-colors-solarized'
    Plugin 'tfnico/vim-gradle'
    Plugin 'kchmck/vim-coffee-script'
+   Plugin 'marijnh/tern_for_vim'
 
    call vundle#end()             " required!
    filetype plugin indent on     " required!

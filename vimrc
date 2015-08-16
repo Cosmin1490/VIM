@@ -135,14 +135,9 @@ nnoremap <Down> ""
 nnoremap <Left> ""
 nnoremap <Right> ""
 
-nmap <C-t> :tabnew<CR>
+nmap <C-t> :tabnew<CR>:OnStartup<CR>
 nmap <F2> :tabprevious<CR>
 nmap <F3> :tabnext<CR>
-
-nmap <A-1> :tabmove 0<CR>
-nmap <A-2> :tabmove 1<CR>
-nmap <A-3> :tabmove 2<CR>
-nmap <A-4> :tabmove 3<CR>
 
 " ----------- Syntastic Configuration ----------------------------------
 

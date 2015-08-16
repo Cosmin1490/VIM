@@ -377,6 +377,11 @@ while i <= 9
     execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
     let i = i + 1
 endwhile
+function! WindowNumber()
+  let str=tabpagewinnr(tabpagenr())
+  return str
+endfunction
+set statusline=win:%{WindowNumber()}\:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " ----------- CTRLP Configuration -------------------------------------------
 

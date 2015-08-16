@@ -17,9 +17,9 @@ def mousePosition():
 
 def mouseEvent(type, x, y):
         theEvent = CGEventCreateMouseEvent(
-                    None, 
-                    type, 
-                    (x, y), 
+                    None,
+                    type,
+                    (x, y),
                     kCGMouseButtonLeft)
         CGEventPost(kCGHIDEventTap, theEvent)
 
@@ -40,4 +40,3 @@ if __name__ == "__main__":
             time.sleep(0.50)
         print "sleeping ..."
         time.sleep(5)
-        

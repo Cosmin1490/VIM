@@ -34,6 +34,7 @@
     - make
     - cmake
     - cgdb
+    - silversearcher-ag
 
 - name: Install Java and Scala
   apt: pkg={{ item }} state=installed update_cache=true
@@ -58,24 +59,22 @@
 - name: Touch cbalan_vim_first_time
   command: touch cbalan_vim_first_time
   sudo: no
-- name: Download Vim Plugins
-  command: /home/vagrant/VIM/lots/vvim "+NeoBundleInstall" "+qall"
-  sudo: no
+#- name: Download Vim Plugins
+#  command: /home/vagrant/VIM/lots/vvim "+NeoBundleInstall" "+qall"
+#  sudo: no
 - name: remove cbalan_vim_first_time
   command: rm cbalan_vim_first_time
   sudo: no
-- name: Compile YCM
-  command: chdir=/home/vagrant/VIM ./compileYcm.sh
 
 # Install Eclipse
-- name: Download eclipse-luna-standard
-  command: wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/luna/SR1/eclipse-standard-luna-SR1-linux-gtk-x86_64.tar.gz
+- name: Download Eclipse
+  command: wget http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/mars/R/eclipse-java-mars-R-linux-gtk-x86_64.tar.gz
   sudo: no
-- name: Untar eclipse
-  command: tar -xzf eclipse-standard-luna-SR1-linux-gtk-x86_64.tar.gz
+- name: Untar Eclipse
+  command: tar -xzf eclipse-java-mars-R-linux-gtk-x86_64.tar.gz
   sudo: no
-- name: Remove eclipse tar
-  command: rm eclipse-standard-luna-SR1-linux-gtk-x86_64.tar.gz
+- name: Remove Eclipse tar
+  command: rm eclipse-java-mars-R-linux-gtk-x86_64.tar.gz
   sudo: no
 
 # Install Eclim

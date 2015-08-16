@@ -307,15 +307,15 @@ endif
 " ----------- Startup Configuration ----------------------------------
 
 function OnStartup()
-  execute 'TagbarToggle'
-  execute 'NERDTreeTabsToggle'
+  execute 'TagbarOpen'
+  execute 'NERDTreeTabsOpen'
   call feedkeys("\<C-W>")
   call feedkeys("\<C-W>")
 endfunction
 
 function OnShutdown()
-  execute 'TagbarToggle'
-  execute 'NERDTreeTabsToggle'
+  execute 'TagbarClose'
+  execute 'NERDTreeTabsClose'
 endfunction
 
 command! OnStartup call OnStartup()

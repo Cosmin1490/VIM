@@ -290,7 +290,6 @@ endif
 " ----------- Startup Configuration ----------------------------------
 
 function OnStartup()
-  execute 'copen'
   execute 'TagbarToggle'
   execute 'NERDTreeTabsToggle'
   call feedkeys("\<C-W>")
@@ -298,7 +297,6 @@ function OnStartup()
 endfunction
 
 function OnShutdown()
-  execute 'cclose'
   execute 'TagbarToggle'
   execute 'NERDTreeTabsToggle'
 endfunction

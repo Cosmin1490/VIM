@@ -21,6 +21,7 @@ set nocp
         \ }
      \ }
 
+   NeoBundle 'airblade/vim-gitgutter'
    NeoBundle 'godlygeek/tabular.git'
    NeoBundle 'bling/vim-airline'
    NeoBundle 'tpope/vim-fugitive.git'
@@ -137,6 +138,8 @@ nnoremap <UP> ""
 nnoremap <Down> ""
 nnoremap <Left> ""
 nnoremap <Right> ""
+
+nnoremap <Leader>c :pclose<CR>
 
 nmap <C-t> :tabnew<CR>
 nmap <F2> :tabprevious<CR>

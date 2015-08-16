@@ -20,6 +20,7 @@ set nocp
         \ }
      \ }
 
+   NeoBundle 'zhaocai/GoldenView.Vim'
    NeoBundle 'airblade/vim-gitgutter'
    NeoBundle 'godlygeek/tabular.git'
    NeoBundle 'bling/vim-airline'
@@ -98,11 +99,28 @@ endif
 
 colorscheme solarized
 
+" ----------- GoldenView Configuration ----------------------------------
+
+let g:goldenview__enable_at_startup = 0
+let g:goldenview__enable_default_mapping = 0
+
+nmap <silent> <C-J>  <Plug>GoldenViewNext
+nmap <silent> <C-K>  <Plug>GoldenViewPrevious
+
+nmap <silent> <C-L>  <Plug>GoldenViewSplit
+nmap <silent> <C-H>  <Plug>GoldenViewSwitchMain
+nmap <silent> <F6>   <Plug>GoldenViewSwitchToggle
+
+nmap <silent> <Leader>gv :ToggleGoldenViewAutoResize<CR>
+
+
 " ----------- NERDTree Configuration ----------------------------------
 
 nnoremap <leader>f :NERDTreeFind<CR>
 map <F8> :NERDTreeTabsToggle<CR>
 
+let g:NERDTreeMapJumpNextSibling='<C-N>'
+let g:NERDTreeMapJumpPrevSibling='<C-P>'
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeHighlightCursorLine = 1
 

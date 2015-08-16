@@ -29,6 +29,7 @@ set nocp
    NeoBundle 'honza/vim-snippets'
    NeoBundle 'wesQ3/vim-windowswap'
    NeoBundle 'kien/ctrlp.vim'
+   NeoBundle 'FelikZ/ctrlp-py-matcher'
    NeoBundle 'derekwyatt/vim-scala'
    NeoBundle 'mustache/vim-mustache-handlebars'
    NeoBundle 'altercation/vim-colors-solarized'
@@ -380,6 +381,18 @@ endwhile
 " ----------- CTRLP Configuration -------------------------------------------
 
 let g:ctrlp_max_files=0
+let g:ctrlp_match_fund = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .idea
+      \ --ignore .ecbuild
+      \ --ignore ecbuild
+      \ --ignore build
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/build/*,*/.ecbuild/*,*/ecbuild/*
 
 "let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'

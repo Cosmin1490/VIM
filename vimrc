@@ -110,7 +110,9 @@ colorscheme solarized
 
 " ----------- NERDTree Configuration ----------------------------------
 
+nnoremap <leader>f :NERDTreeFind<CR>
 map <F8> :NERDTreeTabsToggle<CR>
+
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeHighlightCursorLine = 1
 
@@ -377,7 +379,6 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " ----------- Window Navigation And StatusLine Configuration ---------------------------------
 "
 let g:airline#extensions#tabline#enabled = 1
-
 let i = 1
 while i <= 9
     execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'

@@ -135,7 +135,7 @@ nnoremap <Down> ""
 nnoremap <Left> ""
 nnoremap <Right> ""
 
-nmap <C-t> :tabnew<CR>:OnStartup<CR>
+nmap <C-t> :tabnew<CR>
 nmap <F2> :tabprevious<CR>
 nmap <F3> :tabnext<CR>
 
@@ -397,6 +397,8 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git
       \ --ignore .svn
       \ --ignore .hg
+      \ --ignore .vagrant
+      \ --ignore .gradle
       \ --ignore .idea
       \ --ignore .ecbuild
       \ --ignore ecbuild

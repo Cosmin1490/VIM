@@ -390,6 +390,8 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .ecbuild
       \ --ignore ecbuild
       \ --ignore build
+      \ --ignore bower_components
+      \ --ignore node_modules
       \ --ignore .DS_Store
       \ --ignore "**/*.pyc"
       \ -g ""'

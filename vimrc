@@ -1,33 +1,42 @@
 
 
 let g:ycm_global_ycm_extra_conf = '~/VIM/ycm_extra_conf.py'
+let g:neobundle#install_process_timeout = 2500
 
 set nocp
-" ----------- Vundle Configuration ----------------------------------
+" ----------- NeoBundle Configuration ----------------------------------
                                               
    filetype off                  " required!
    
-   set rtp+=~/VIM/bundle/Vundle.vim/
-   call vundle#begin("~/VIM/bundle")
-   
-   Plugin 'gmarik/Vundle.vim'
-   Plugin 'scrooloose/nerdtree'   
-   Plugin 'jistr/vim-nerdtree-tabs'
-   Plugin 'majutsushi/tagbar'
-   Plugin 'scrooloose/syntastic'
-   Plugin 'Valloric/YouCompleteMe'
-   Plugin 'SirVer/ultisnips'
-   Plugin 'honza/vim-snippets'
-   Plugin 'wesQ3/vim-windowswap'
-   Plugin 'kien/ctrlp.vim'
-   Plugin 'derekwyatt/vim-scala'
-   Plugin 'mustache/vim-mustache-handlebars'
-   Plugin 'altercation/vim-colors-solarized'
-   Plugin 'tfnico/vim-gradle'
-   Plugin 'kchmck/vim-coffee-script'
-   Plugin 'marijnh/tern_for_vim'
+   set rtp+=~/VIM/bundle/neobundle.vim/
+   call neobundle#begin(expand('~/VIM/bundle/'))
+   NeoBundleFetch 'Shougo/neobundle.vim'
 
-   call vundle#end()             " required!
+   NeoBundle 'Valloric/YouCompleteMe' , {
+     \ 'build'      : {
+        \ 'mac'     : './install.sh --clang-completer',
+        \ 'unix'    : './install.sh --clang-completer',
+        \ 'windows' : './install.sh --clang-completer',
+        \ 'cygwin'  : './install.sh --clang-completer'
+        \ }
+     \ }
+
+   NeoBundle 'scrooloose/nerdtree'
+   NeoBundle 'jistr/vim-nerdtree-tabs'
+   NeoBundle 'majutsushi/tagbar'
+   NeoBundle 'scrooloose/syntastic'
+   NeoBundle 'SirVer/ultisnips'
+   NeoBundle 'honza/vim-snippets'
+   NeoBundle 'wesQ3/vim-windowswap'
+   NeoBundle 'kien/ctrlp.vim'
+   NeoBundle 'derekwyatt/vim-scala'
+   NeoBundle 'mustache/vim-mustache-handlebars'
+   NeoBundle 'altercation/vim-colors-solarized'
+   NeoBundle 'tfnico/vim-gradle'
+   NeoBundle 'kchmck/vim-coffee-script'
+   NeoBundle 'marijnh/tern_for_vim'
+
+   call neobundle#end()          " required!
    filetype plugin indent on     " required!
 
    "

@@ -115,6 +115,16 @@ let g:NERDTreeHighlightCursorLine = 1
 " ----------- TagBar Configuration ----------------------------------
 
 nmap <F9> :TagbarToggle<CR>
+let g:tagbar_type_coffee = {
+    \ 'ctagstype' : 'coffee',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 'm:methods',
+        \ 'f:functions',
+        \ 'v:variables',
+        \ 'f:fields',
+    \ ]
+    \ }
 
 " ----------- KeyMapping Configuration ----------------------------------
 

@@ -87,7 +87,11 @@
 - name: Install Eclipse Plugins
   command: ./installEclim.sh
   sudo: no
-- name: Install Eclim
-  command: chdir=/home/vagrant/eclim ant -Declipse.home=/home/vagrant/eclipse
+- name: Install Eclim Eclipse
+  command: chdir=/home/vagrant/eclim ant deploy.eclipse -Declipse.home=/home/vagrant/eclipse
   sudo: no
+- name: Install Eclim Vim
+  command: chdir=/home/vagrant/eclim ant deploy.vim -Dvim.files=/home/vagrant/.vim -Declipse.home=/home/vagrant/eclipse
+  sudo: no
+
 

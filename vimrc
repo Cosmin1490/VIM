@@ -40,6 +40,21 @@ set nocp
    NeoBundle 'tfnico/vim-gradle'
    NeoBundle 'kchmck/vim-coffee-script'
    NeoBundle 'marijnh/tern_for_vim'
+   NeoBundle 'leafgarland/typescript-vim'
+   NeoBundle 'Shougo/unite.vim'
+   NeoBundle 'Quramy/vison'
+
+   NeoBundle 'Shougo/vimproc.vim', {
+   \ 'build' : {
+   \     'windows' : 'tools\\update-dll-mingw',
+   \     'cygwin' : 'make -f make_cygwin.mak',
+   \     'mac' : 'make -f make_mac.mak',
+   \     'linux' : 'make',
+   \     'unix' : 'gmake',
+   \    },
+   \ }
+
+   NeoBundle 'Quramy/tsuquyomi'
 
    call neobundle#end()          " required!
 
@@ -99,6 +114,10 @@ endif
 
 colorscheme solarized
 
+" ----------- Typescript Configuration ----------------------------------
+
+"let g:typescript_indent_disable = 1
+"autocmd FileType typescript setlocal completeopt+=menu,preview
 " ----------- GoldenView Configuration ----------------------------------
 
 let g:goldenview__enable_at_startup = 0
@@ -145,7 +164,8 @@ nnoremap <Down> ""
 nnoremap <Left> ""
 nnoremap <Right> ""
 
-nnoremap <Leader>c :pclose<CR>
+nnoremap <Leader>c :pclose<CR>:cclose<CR>
+nnoremap <Leader>x :copen<CR>
 
 nmap <C-t> :tabnew<CR>
 nmap <F2> :tabprevious<CR>
@@ -306,6 +326,8 @@ endif
 
 " ----------- Startup Configuration ----------------------------------
 
+autocmd FileType qf wincmd J
+
 function OnStartup()
   execute 'TagbarOpen'
   execute 'NERDTreeTabsOpen'
@@ -347,6 +369,22 @@ nnoremap <Leader>mc :make clean<CR>
 
 
 " ----------- Ultisnips + YCM Configuration ----------------------------------
+
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.'],
+            \   'objc' : ['->', '.'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::', '"', "'", 'use ', 'namespace ', '\'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'html': ['<', '"', '</', ' '],
+            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \   'haskell' : ['.', 're!.']
+            \ }
 
 let g:ycm_always_populate_location_list = 1
 let g:ycm_confirm_extra_conf = 0

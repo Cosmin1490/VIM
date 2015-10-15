@@ -43,6 +43,7 @@ set nocp
    NeoBundle 'leafgarland/typescript-vim'
    NeoBundle 'Shougo/unite.vim'
    NeoBundle 'Quramy/vison'
+   NeoBundle 'groenewege/vim-less'
 
    NeoBundle 'Shougo/vimproc.vim', {
    \ 'build' : {

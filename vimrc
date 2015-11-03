@@ -24,6 +24,7 @@ set nocp
    NeoBundle 'Shougo/unite.vim'
    NeoBundle 'Quramy/vison'
    NeoBundle 'gregsexton/MatchTag'
+   NeoBundle 'matchit.zip'
 
    NeoBundle 'wesQ3/vim-windowswap'
    NeoBundle 'zhaocai/GoldenView.Vim'

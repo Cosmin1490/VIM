@@ -20,20 +20,29 @@ set nocp
         \ }
      \ }
 
+   NeoBundle 'scrooloose/syntastic'
+   NeoBundle 'Shougo/unite.vim'
+   NeoBundle 'Quramy/vison'
+   NeoBundle 'gregsexton/MatchTag'
+
+   NeoBundle 'wesQ3/vim-windowswap'
    NeoBundle 'zhaocai/GoldenView.Vim'
-   NeoBundle 'airblade/vim-gitgutter'
-   NeoBundle 'godlygeek/tabular.git'
    NeoBundle 'bling/vim-airline'
+
+   NeoBundle 'airblade/vim-gitgutter'
    NeoBundle 'tpope/vim-fugitive.git'
+
+   NeoBundle 'godlygeek/tabular.git'
+   NeoBundle 'SirVer/ultisnips'
+   NeoBundle 'honza/vim-snippets'
+
    NeoBundle 'scrooloose/nerdtree'
    NeoBundle 'jistr/vim-nerdtree-tabs'
    NeoBundle 'majutsushi/tagbar'
-   NeoBundle 'scrooloose/syntastic'
-   NeoBundle 'SirVer/ultisnips'
-   NeoBundle 'honza/vim-snippets'
-   NeoBundle 'wesQ3/vim-windowswap'
+
    NeoBundle 'kien/ctrlp.vim'
    NeoBundle 'FelikZ/ctrlp-py-matcher'
+
    NeoBundle 'derekwyatt/vim-scala'
    NeoBundle 'mustache/vim-mustache-handlebars'
    NeoBundle 'altercation/vim-colors-solarized'
@@ -41,21 +50,19 @@ set nocp
    NeoBundle 'kchmck/vim-coffee-script'
    NeoBundle 'marijnh/tern_for_vim'
    NeoBundle 'leafgarland/typescript-vim'
-   NeoBundle 'Shougo/unite.vim'
-   NeoBundle 'Quramy/vison'
    NeoBundle 'groenewege/vim-less'
+   NeoBundle 'Quramy/tsuquyomi'
 
    NeoBundle 'Shougo/vimproc.vim', {
    \ 'build' : {
    \     'windows' : 'tools\\update-dll-mingw',
    \     'cygwin' : 'make -f make_cygwin.mak',
-   \     'mac' : 'make -f make_mac.mak',
+   \     'mac' : 'make',
    \     'linux' : 'make',
    \     'unix' : 'gmake',
    \    },
    \ }
 
-   NeoBundle 'Quramy/tsuquyomi'
 
    call neobundle#end()          " required!
 
@@ -78,6 +85,7 @@ set noexrc                               "don't use the local config
 set incsearch                            "find the next match as we type the search
 set hlsearch                             "hilight searches by default
 set ignorecase                           "ignore case when searching
+set smartcase                            "smart case when searching
 
 set shiftwidth=2                         "number of spaces to use in each autoindent step
 set tabstop=2                            "two tab spaces
@@ -95,15 +103,21 @@ set copyindent                           "copy the previous indentation on autoi
 set noerrorbells                         "don't make noise
 set wildmenu                             "make tab completion act more like bash
 set wildmode=list:longest                "tab complete to longest common string, like bash
+set wildignorecase                       "tab complete is now case insensitive
 
 set hidden                               "allow hiding buffers with unsaved changes
 set cmdheight=2                          "make the command line a little taller to hide 'press enter to viem more' text
 
 set clipboard=unnamed                    "Use system clipboard by default
-set smartcase
-set noerrorbells
 set novisualbell
 set laststatus=2
+
+set history=1000                         " remember more commands and search history
+set undolevels=1000                      " use many muchos levels of undo
+set title                                " change the terminal's title
+
+set nobackup
+set noswapfile
 
 set tags=tags;/
 

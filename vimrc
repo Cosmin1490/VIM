@@ -190,8 +190,28 @@ nmap <F3> :tabnext<CR>
 " ----------- Syntastic Configuration ----------------------------------
 
 let g:syntastic_mode_map = {'mode' : 'passive',
-				\ 'active_filetypes': ['scala'],
+				\ 'active_filetypes': ['scala', "html"],
 				\ 'passive-filetypes': []}
+
+let g:syntastic_html_tidy_exec = "/usr/local/Cellar/tidy-html5/5.1.25/bin/tidy"
+
+if !exists('g:syntastic_html_tidy_ignore_errors')
+  let g:syntastic_html_tidy_ignore_errors = []
+endif
+
+let g:syntastic_html_tidy_ignore_errors += [
+  \   '> proprietary attribute "',
+  \   'trimming empty <'
+  \ ]
+
+if !exists('g:syntastic_html_tidy_blocklevel_tags')
+  let g:syntastic_html_tidy_blocklevel_tags = []
+endif
+
+let g:syntastic_html_tidy_blocklevel_tags += [
+  \ 'ng-include',
+  \ 'ng-form'
+  \ ]
 
 "let g:syntastic_check_on_open=1
 "let g:syntastic_enable_signs=1

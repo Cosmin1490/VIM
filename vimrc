@@ -399,26 +399,10 @@ nmap <F5> :OnShutdown<CR>
 
 autocmd vimenter * if !argc() | execute 'OnStartup' | endif
 
-" ----------- Eclim Configuration ----------------------------------
-
-set omnifunc=syntaxcomplete#Complete
-let g:EclimCompletionMethod = 'omnifunc'
-let g:EclimDefaultFileOpenAction = 'edit'
-
-nnoremap <Leader>ji :JavaImport<CR>
-nnoremap <Leader>jd :JavaDocSearch -x declarations<CR>
-nnoremap <Leader>jc :JavaCorrect<CR>
-nnoremap <Leader>js :JavaSearchContext<CR>
-
-nnoremap <Leader>jr :JavaRename<CR>
-
-nnoremap <Leader>ss :ScalaSearch<CR>
-nnoremap <Leader>si :ScalaImport<CR>
-
 " ----------- Makefile ------------------------------------------------------
+
 nnoremap <Leader>mr :make run<CR>
 nnoremap <Leader>mc :make clean<CR>
-
 
 " ----------- Ultisnips + YCM Configuration ----------------------------------
 

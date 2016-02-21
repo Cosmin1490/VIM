@@ -29,6 +29,7 @@ set nocp
    NeoBundle 'wesQ3/vim-windowswap'
    NeoBundle 'zhaocai/GoldenView.Vim'
    NeoBundle 'bling/vim-airline'
+   NeoBundle 'vim-airline/vim-airline-themes'
 
    NeoBundle 'airblade/vim-gitgutter'
    NeoBundle 'tpope/vim-fugitive.git'

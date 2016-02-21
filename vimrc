@@ -13,10 +13,10 @@ set nocp
 
    NeoBundle 'Valloric/YouCompleteMe' , {
      \ 'build'      : {
-        \ 'mac'     : './install.sh --clang-completer',
-        \ 'unix'    : './install.sh --clang-completer',
-        \ 'windows' : './install.sh --clang-completer',
-        \ 'cygwin'  : './install.sh --clang-completer'
+        \ 'mac'     : './install.sh --clang-completer --tern-completer',
+        \ 'unix'    : './install.sh --clang-completer --tern-completer',
+        \ 'windows' : './install.sh --clang-completer --tern-completer',
+        \ 'cygwin'  : './install.sh --clang-completer --tern-completer'
         \ }
      \ }
 
@@ -52,7 +52,6 @@ set nocp
    NeoBundle 'marijnh/tern_for_vim'
    NeoBundle 'leafgarland/typescript-vim'
    NeoBundle 'groenewege/vim-less'
-   NeoBundle 'Quramy/tsuquyomi'
 
    NeoBundle 'Shougo/vimproc.vim', {
    \ 'build' : {
@@ -130,10 +129,6 @@ endif
 
 colorscheme solarized
 
-" ----------- Typescript Configuration ----------------------------------
-
-"let g:typescript_indent_disable = 1
-"autocmd FileType typescript setlocal completeopt+=menu,preview
 " ----------- GoldenView Configuration ----------------------------------
 
 let g:goldenview__enable_at_startup = 0

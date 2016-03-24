@@ -11,6 +11,7 @@ set nocp
    call neobundle#begin(expand('~/VIM/bundle/'))
    NeoBundleFetch 'Shougo/neobundle.vim'
 
+   NeoBundle 'Valloric/listtoggle'
    NeoBundle 'Valloric/YouCompleteMe' , {
      \ 'build'      : {
         \ 'mac'     : './install.sh --clang-completer --tern-completer',
@@ -51,8 +52,9 @@ set nocp
    NeoBundle 'tfnico/vim-gradle'
    NeoBundle 'kchmck/vim-coffee-script'
    NeoBundle 'marijnh/tern_for_vim'
-   NeoBundle 'leafgarland/typescript-vim'
    NeoBundle 'groenewege/vim-less'
+   NeoBundle 'leafgarland/typescript-vim'
+   NeoBundle 'Quramy/tsuquyomi'
 
    NeoBundle 'Shougo/vimproc.vim', {
    \ 'build' : {
@@ -189,18 +191,18 @@ nnoremap <Down> ""
 nnoremap <Left> ""
 nnoremap <Right> ""
 
-nnoremap <Leader>c :pclose<CR>:cclose<CR>
-nnoremap <Leader>x :copen<CR>
-
 nmap <C-t> :tabnew<CR>
 nmap <F2> :tabprevious<CR>
 nmap <F3> :tabnext<CR>
 
 " ----------- Syntastic Configuration ----------------------------------
+"
+nnoremap <Leader>sc :SyntasticCheck<CR>
+nnoremap <Leader>sr :SyntasticReset<CR>
 
 let g:syntastic_mode_map = {'mode' : 'passive',
-				\ 'active_filetypes': ['scala', "html"],
-				\ 'passive-filetypes': []}
+        \ 'active_filetypes': ['scala', 'html'],
+        \ 'passive-filetypes': []}
 
 let g:syntastic_html_tidy_exec = "/usr/local/Cellar/tidy-html5/5.1.25/bin/tidy"
 
@@ -222,15 +224,17 @@ let g:syntastic_html_tidy_blocklevel_tags += [
   \ 'ng-form'
   \ ]
 
-nnoremap <Leader>sc :SyntasticCheck<CR>
-nnoremap <Leader>sr :SyntasticReset<CR>
+let g:syntastic_typescript_tsc_fname = ''
 
-"let g:syntastic_check_on_open=1
-"let g:syntastic_enable_signs=1
-"let g:syntastic_auto_loc_list=1
-"let g:syntastic_disabled_filetypes=['html']
-"let g:syntastic_enable_signs=1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
 
+let g:syntastic_enable_signs=1
+let g:syntastic_error_symbol = 'x'
+let g:syntastic_warning_symbol = '!'
+
+let g:syntastic_check_on_wq = 0
 
 " ----------- Cscope Configuration ----------------------------------
 
@@ -400,7 +404,19 @@ autocmd vimenter * if !argc() | execute 'OnStartup' | endif
 nnoremap <Leader>mr :make run<CR>
 nnoremap <Leader>mc :make clean<CR>
 
+" ----------- ListToggle Configuration ----------------------------------
+
+let g:lt_location_list_toggle_map = '<leader>x'
+let g:lt_quickfix_list_toggle_map = '<leader>c'
+
 " ----------- Ultisnips + YCM Configuration ----------------------------------
+
+nnoremap <Leader>y :YcmForceCompileAndDiagnostics<CR>
+nnoremap <Leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <Leader>pd :YcmCompleter GoToDefinition<CR>
+nnoremap <Leader>pc :YcmCompleter GoToDeclaration<CR>
+nnoremap <Leader>pt :YcmCompleter GetType<CR>
+nnoremap <Leader>pr :YcmCompleter GoToReferences<CR>
 
 let g:ycm_semantic_triggers =  {
             \   'c' : ['->', '.'],
@@ -418,18 +434,21 @@ let g:ycm_semantic_triggers =  {
             \   'haskell' : ['.', 're!.']
             \ }
 
-let g:ycm_always_populate_location_list = 1
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_add_preview_to_completeopt = 1
 
-nnoremap <Leader>y :YcmForceCompileAndDiagnostics<CR>
-nnoremap <Leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <Leader>pd :YcmCompleter GoToDefinition<CR>
-nnoremap <Leader>pc :YcmCompleter GoToDeclaration<CR>
+let g:ycm_auto_trigger = 1
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_min_num_identifier_candidate_chars = 0
 
 let g:ycm_collect_identifiers_from_tags_files = 1
+
+let g:ycm_always_populate_location_list = 1
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
 let g:ycm_show_diagnostics_ui = 1
+let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_error_symbol = 'x'
 let g:ycm_warning_symbol = '!'
 let g:ycm_enable_diagnostic_signs = 1
@@ -457,7 +476,7 @@ let g:UltiSnipsListSnippets="<c-e>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " ----------- Window Navigation And StatusLine Configuration ---------------------------------
-"
+
 let g:airline#extensions#tabline#enabled = 1
 let i = 1
 while i <= 9
@@ -491,3 +510,10 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ -g ""'
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/build/*,*/.ecbuild/*,*/ecbuild/*
+
+" ----------- Quickfix Window Configuration ---------------------------------
+
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction

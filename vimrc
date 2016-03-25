@@ -406,6 +406,7 @@ nnoremap <Leader>mc :make clean<CR>
 
 " ----------- ListToggle Configuration ----------------------------------
 
+nnoremap <Leader>z :pclose<CR>:cclose<CR>
 let g:lt_location_list_toggle_map = '<leader>x'
 let g:lt_quickfix_list_toggle_map = '<leader>c'
 

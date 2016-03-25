@@ -11,6 +11,11 @@ set nocp
    call neobundle#begin(expand('~/VIM/bundle/'))
    NeoBundleFetch 'Shougo/neobundle.vim'
 
+   NeoBundle 'scrooloose/syntastic'
+
+   NeoBundle 'ervandew/supertab'
+   NeoBundle 'SirVer/ultisnips'
+   NeoBundle 'honza/vim-snippets'
    NeoBundle 'Valloric/listtoggle'
    NeoBundle 'Valloric/YouCompleteMe' , {
      \ 'build'      : {
@@ -21,10 +26,17 @@ set nocp
         \ }
      \ }
 
-   NeoBundle 'scrooloose/syntastic'
-   NeoBundle 'Shougo/unite.vim'
+   NeoBundle 'altercation/vim-colors-solarized'
+   NeoBundle 'scrooloose/nerdtree'
+   NeoBundle 'jistr/vim-nerdtree-tabs'
+   NeoBundle 'majutsushi/tagbar'
+
    NeoBundle 'Quramy/vison'
+   NeoBundle 'Quramy/tsuquyomi'
+
    NeoBundle 'gregsexton/MatchTag'
+
+   NeoBundle 'Raimondi/delimitMate'
    NeoBundle 'matchit.zip'
 
    NeoBundle 'wesQ3/vim-windowswap'
@@ -36,26 +48,18 @@ set nocp
    NeoBundle 'tpope/vim-fugitive.git'
 
    NeoBundle 'godlygeek/tabular.git'
-   NeoBundle 'SirVer/ultisnips'
-   NeoBundle 'honza/vim-snippets'
-
-   NeoBundle 'scrooloose/nerdtree'
-   NeoBundle 'jistr/vim-nerdtree-tabs'
-   NeoBundle 'majutsushi/tagbar'
 
    NeoBundle 'kien/ctrlp.vim'
    NeoBundle 'FelikZ/ctrlp-py-matcher'
 
    NeoBundle 'derekwyatt/vim-scala'
    NeoBundle 'mustache/vim-mustache-handlebars'
-   NeoBundle 'altercation/vim-colors-solarized'
    NeoBundle 'tfnico/vim-gradle'
    NeoBundle 'kchmck/vim-coffee-script'
-   NeoBundle 'marijnh/tern_for_vim'
    NeoBundle 'groenewege/vim-less'
    NeoBundle 'leafgarland/typescript-vim'
-   NeoBundle 'Quramy/tsuquyomi'
 
+   NeoBundle 'Shougo/unite.vim'
    NeoBundle 'Shougo/vimproc.vim', {
    \ 'build' : {
    \     'windows' : 'tools\\update-dll-mingw',
@@ -66,6 +70,7 @@ set nocp
    \    },
    \ }
 
+   NeoBundle 'Cosmin1490/cbalanUltiSnips'
 
    call neobundle#end()          " required!
 
@@ -183,6 +188,11 @@ let g:tagbar_type_coffee = {
         \ 'f:fields',
     \ ]
     \ }
+
+" ----------- DelimitMate Configuration ----------------------------------
+
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
 
 " ----------- KeyMapping Configuration ----------------------------------
 
@@ -456,25 +466,15 @@ let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 1
 let g:ycm_echo_current_diagnostic = 1
 
-function! g:UltiSnips_Complete()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips#JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsListSnippets="<c-e>"
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " ----------- Window Navigation And StatusLine Configuration ---------------------------------
 

@@ -36,7 +36,6 @@ set nocp
 
    NeoBundle 'gregsexton/MatchTag'
 
-   NeoBundle 'Raimondi/delimitMate'
    NeoBundle 'matchit.zip'
 
    NeoBundle 'wesQ3/vim-windowswap'
@@ -479,6 +478,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " ----------- Window Navigation And StatusLine Configuration ---------------------------------
 
 let g:airline#extensions#tabline#enabled = 1
+
 let i = 1
 while i <= 9
     execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
@@ -488,7 +488,6 @@ function! WindowNumber()
   let str=tabpagewinnr(tabpagenr())
   return str
 endfunction
-set statusline=win:%{WindowNumber()}\:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " ----------- CTRLP Configuration -------------------------------------------
 

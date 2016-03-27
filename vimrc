@@ -153,7 +153,7 @@ nmap <silent> <Leader>gv :ToggleGoldenViewAutoResize<CR>
 
 " ----------- NERDTree Configuration ----------------------------------
 
-nnoremap <leader>f :NERDTreeFind<CR>
+nnoremap <leader>f :NERDTreeTabsFind<CR>
 map <F8> :NERDTreeTabsToggle<CR>
 
 let g:NERDTreeMapJumpNextSibling='<C-N>'

@@ -56,6 +56,8 @@ set nocp
    NeoBundle 'tfnico/vim-gradle'
    NeoBundle 'kchmck/vim-coffee-script'
    NeoBundle 'groenewege/vim-less'
+   " NeoBundle 'skammer/vim-css-color'
+   NeoBundle 'hail2u/vim-css3-syntax'
    NeoBundle 'leafgarland/typescript-vim'
 
    NeoBundle 'Shougo/unite.vim'
@@ -210,7 +212,7 @@ nnoremap <Leader>sc :SyntasticCheck<CR>
 nnoremap <Leader>sr :SyntasticReset<CR>
 
 let g:syntastic_mode_map = {'mode' : 'passive',
-        \ 'active_filetypes': ['scala', 'html'],
+        \ 'active_filetypes': ['scala'],
         \ 'passive-filetypes': []}
 
 let g:syntastic_html_tidy_exec = "/usr/local/Cellar/tidy-html5/5.1.25/bin/tidy"

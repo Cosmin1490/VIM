@@ -496,6 +496,7 @@ endfunction
 " ----------- CTRLP Configuration -------------------------------------------
 
 let g:ctrlp_max_files=0
+let g:ctrlp_match_window = 'results:100'
 let g:ctrlp_match_fund = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git

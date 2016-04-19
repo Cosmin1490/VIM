@@ -48,7 +48,7 @@ set nocp
 
    NeoBundle 'godlygeek/tabular.git'
 
-   NeoBundle 'kien/ctrlp.vim'
+   NeoBundle 'ctrlpvim/ctrlp.vim'
    NeoBundle 'FelikZ/ctrlp-py-matcher'
 
    NeoBundle 'derekwyatt/vim-scala'

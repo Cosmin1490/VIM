@@ -29,6 +29,7 @@ set nocp
    NeoBundle 'altercation/vim-colors-solarized'
    NeoBundle 'scrooloose/nerdtree'
    NeoBundle 'jistr/vim-nerdtree-tabs'
+   NeoBundle 'Xuyuanp/nerdtree-git-plugin'
    NeoBundle 'majutsushi/tagbar'
 
    NeoBundle 'Quramy/vison'

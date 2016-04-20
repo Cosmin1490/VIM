@@ -31,6 +31,7 @@ set nocp
    NeoBundle 'jistr/vim-nerdtree-tabs'
    NeoBundle 'Xuyuanp/nerdtree-git-plugin'
    NeoBundle 'majutsushi/tagbar'
+   NeoBundle 'tpope/vim-commentary'
 
    NeoBundle 'Quramy/vison'
    NeoBundle 'Quramy/tsuquyomi'

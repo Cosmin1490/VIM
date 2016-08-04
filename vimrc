@@ -238,7 +238,9 @@ let g:syntastic_html_tidy_blocklevel_tags += [
   \ 'ng-form'
   \ ]
 
+let g:syntastic_typescript_checkers = ['tslint']
 let g:syntastic_typescript_tsc_fname = ''
+let g:syntastic_typescript_tslint_exec="./node_modules/tslint/bin/tslint"
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -247,6 +249,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol = 'x'
 let g:syntastic_warning_symbol = '!'
+let g:syntastic_style_error_symbol = 'x'
+let g:syntastic_style_warning_symbol = '!'
 
 let g:syntastic_check_on_wq = 0
 

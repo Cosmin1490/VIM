@@ -1,13 +1,13 @@
 [user]
-	name = name
+  name = name
   email = email
 [core]
   editor = vim
   excludesfile = ~/.gitignore_global
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [diff]
-	tool = vimdiff
+  tool = vimdiff
 [difftool]
-	prompt = false
+  prompt = false
 [push]
-	default = simple
+  default = simple

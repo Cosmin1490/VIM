@@ -41,7 +41,7 @@ const string file = "$filename";
 const string infile = file + ".in";
 const string outfile = file + ".out";
 
-const int INF = 0x3f3f3f3f; 
+const int INF = 0x3f3f3f3f;
 
 //#define ONLINE_JUDGE
 
@@ -53,7 +53,7 @@ int main()
 #else
     fstream fin(infile.c_str(), ios::in);
     fstream fout(outfile.c_str(), ios::out);
-#endif	
+#endif
 
     /*code*/
 

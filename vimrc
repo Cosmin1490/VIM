@@ -195,15 +195,36 @@ let g:tagbar_type_coffee = {
 let g:tagbar_type_tf = {
     \ 'ctagstype' : 'tf',
     \ 'kinds'     : [
-        \ 'c:class',
-        \ 'm:member'
+        \ 'c:resource',
+        \ 'm:members',
+        \ 'v:variables',
+        \ 'o:outputs'
     \ ],
     \ 'sro' : '.',
     \ 'kind2scope' : {
-        \ 'c' : 'class'
+        \ 'c' : 'resource'
     \ },
     \ 'scope2kind' : {
-        \ 'class' : 'c'
+        \ 'resource' : 'c'
+    \ },
+    \ 'ctagsbin'  : 'tftags.py',
+    \ 'ctagsargs' : 't'
+\ }
+
+let g:tagbar_type_terraform = {
+    \ 'ctagstype' : 'terraform',
+    \ 'kinds'     : [
+        \ 'c:resource',
+        \ 'm:members',
+        \ 'v:variables',
+        \ 'o:outputs'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 'c' : 'resource'
+    \ },
+    \ 'scope2kind' : {
+        \ 'resource' : 'c'
     \ },
     \ 'ctagsbin'  : 'tftags.py',
     \ 'ctagsargs' : 't'

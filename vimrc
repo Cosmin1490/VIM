@@ -192,7 +192,22 @@ let g:tagbar_type_coffee = {
         \ 'f:fields',
     \ ]
     \ }
-
+let g:tagbar_type_tf = {
+    \ 'ctagstype' : 'tf',
+    \ 'kinds'     : [
+        \ 'c:class',
+        \ 'm:member'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 'c' : 'class'
+    \ },
+    \ 'scope2kind' : {
+        \ 'class' : 'c'
+    \ },
+    \ 'ctagsbin'  : 'tftags.py',
+    \ 'ctagsargs' : 't'
+\ }
 " ----------- DelimitMate Configuration ----------------------------------
 
 let delimitMate_expand_cr = 1

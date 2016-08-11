@@ -27,9 +27,10 @@ set nocp
      \ }
 
    NeoBundle 'altercation/vim-colors-solarized'
-   NeoBundle 'scrooloose/nerdtree'
-   NeoBundle 'jistr/vim-nerdtree-tabs'
-   NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+   NeoBundle 'Shougo/vimfiler.vim'
+   " NeoBundle 'scrooloose/nerdtree'
+   " NeoBundle 'jistr/vim-nerdtree-tabs'
+   " NeoBundle 'Xuyuanp/nerdtree-git-plugin'
    NeoBundle 'majutsushi/tagbar'
    NeoBundle 'tpope/vim-commentary'
 
@@ -158,13 +159,13 @@ nmap <silent> <Leader>gv :ToggleGoldenViewAutoResize<CR>
 
 " ----------- NERDTree Configuration ----------------------------------
 
-nnoremap <leader>f :NERDTreeTabsFind<CR>
-map <F8> :NERDTreeTabsToggle<CR>
+" nnoremap <leader>f :NERDTreeTabsFind<CR>
+" map <F8> :NERDTreeTabsToggle<CR>
 
-let g:NERDTreeMapJumpNextSibling='<C-N>'
-let g:NERDTreeMapJumpPrevSibling='<C-P>'
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeHighlightCursorLine = 1
+" let g:NERDTreeMapJumpNextSibling='<C-N>'
+" let g:NERDTreeMapJumpPrevSibling='<C-P>'
+" let g:NERDTreeChDirMode = 2
+" let g:NERDTreeHighlightCursorLine = 1
 
 " ----------- TagBar Configuration ----------------------------------
 
@@ -436,14 +437,16 @@ autocmd FileType qf wincmd J
 
 function OnStartup()
   execute 'TagbarOpen'
-  execute 'NERDTreeTabsOpen'
-  call feedkeys("\<C-W>")
-  call feedkeys("\<C-W>")
+  if (bufwinnr('vimfiler') == -1)
+    execute 'VimFilerExplorer -create -buffer-name=vimfiler -no-focus'
+  endif
 endfunction
 
 function OnShutdown()
   execute 'TagbarClose'
-  execute 'NERDTreeTabsClose'
+  if (bufwinnr('vimfiler') != -1)
+    execute 'VimFilerExplorer -close -buffer-name=vimfiler'
+  endif
 endfunction
 
 command! OnStartup call OnStartup()

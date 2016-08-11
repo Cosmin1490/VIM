@@ -37,7 +37,7 @@ set nocp
    NeoBundle 'Quramy/tsuquyomi'
 
    NeoBundle 'gregsexton/MatchTag'
-   NeoBundle 'bronson/vim-trailing-whitespace'
+   NeoBundle 'ntpeters/vim-better-whitespace'
 
    NeoBundle 'matchit.zip'
 

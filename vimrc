@@ -19,10 +19,10 @@ set nocp
    NeoBundle 'Valloric/listtoggle'
    NeoBundle 'Valloric/YouCompleteMe' , {
      \ 'build'      : {
-        \ 'mac'     : './install.sh --clang-completer --tern-completer',
-        \ 'unix'    : './install.sh --clang-completer --tern-completer',
-        \ 'windows' : './install.sh --clang-completer --tern-completer',
-        \ 'cygwin'  : './install.sh --clang-completer --tern-completer'
+        \ 'mac'     : './install.sh --clang-completer --ts-completer',
+        \ 'unix'    : './install.sh --clang-completer --ts-completer',
+        \ 'windows' : './install.sh --clang-completer --ts-completer',
+        \ 'cygwin'  : './install.sh --clang-completer --ts-completer'
         \ }
      \ }
 

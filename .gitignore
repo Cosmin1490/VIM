@@ -2,6 +2,7 @@
 bundle/*
 !bundle/neobundle.vim
 GdbPrinters/*
+.DS_Store
 *.swp
 *.pyc
 */.vagrant/*

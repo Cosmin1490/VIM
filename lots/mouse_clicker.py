@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python3
 import time
 from Quartz.CoreGraphics import CGEventGetLocation
 from Quartz.CoreGraphics import CGEventCreate
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     time.sleep(10)
     while True:
         print("clicking ...")
-        for j in xrange(0, 100):
+        for j in range(0, 100):
             cpos = mousePosition()
             mouseClick(cpos.x, cpos.y)
             time.sleep(0.50)

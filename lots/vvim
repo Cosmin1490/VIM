@@ -4,7 +4,7 @@ import subprocess
 import sys
 
 if platform.system() == "Darwin":
-    path = "/usr/local/bin/vim"
+    path = "/opt/homebrew/bin/vim"
 else:
     path = "/usr/bin/vim"
 

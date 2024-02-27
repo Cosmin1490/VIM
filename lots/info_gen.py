@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python3
 import os
 import sys
 import string
@@ -45,8 +45,7 @@ const int INF = 0x3f3f3f3f;
 
 //#define ONLINE_JUDGE
 
-int main()
-{
+int main() {
 #ifdef ONLINE_JUDGE
     ostream &fout = cout;
     istream &fin = cin;
@@ -65,12 +64,12 @@ int main()
 }
 """
 
-makeData = """all: $filename.cpp 
+makeData = """all: $filename.cpp
 	g++ -g $filename.cpp -Wall -Wextra -std=c++11 -o $filename.exe
 run: $filename.cpp
 	g++ $filename.cpp -Wall -Wextra -std=c++11 -o $filename.exe
 	./$filename.exe
-clean: 
+clean:
 	rm *.exe
 """
 fileName = sys.argv[1];

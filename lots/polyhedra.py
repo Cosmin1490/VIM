@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import math
+import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
 
 def icosahedron_vertices():
     phi = (1 + math.sqrt(5)) / 2
@@ -153,21 +155,39 @@ def normalize(v):
     norm = math.sqrt(v[0]**2 + v[1]**2 + v[2]**2)
     return (v[0]/norm, v[1]/norm, v[2]/norm)
 
+def angle_between_vectors(v1, v2, ref):
+    v1_normalized = normalize(v1 - ref)
+    v2_normalized = normalize(v2 - ref)
+    cosine_angle = np.dot(v1_normalized, v2_normalized)
+    angle = np.arccos(np.clip(cosine_angle, -1, 1))
+    return angle
+
+def sort_adjacent_faces(vertices, faces, vertex):
+    if len(faces) <= 1:
+        return faces
+
+    ref_vector = vertices[faces[0]]
+    sorted_faces = [faces[0]]
+    remaining_faces = faces[1:]
+
+    while remaining_faces:
+        face_angles = [(face, angle_between_vectors(ref_vector, vertices[face], vertex)) for face in remaining_faces]
+        next_face, _ = min(face_angles, key=lambda x: x[1])
+        ref_vector = vertices[next_face]
+        sorted_faces.append(next_face)
+        remaining_faces.remove(next_face)
+
+    return sorted_faces
+
 def dual_polyhedron(vertices, faces):
-    dual_vertices = []
-    face_to_vertex = {}
-    for face_index, face in enumerate(faces):
-        face_vertices = [vertices[i] for i in face]
-        face_centroid = centroid(face_vertices)
-        face_centroid = normalize(face_centroid)  # Normalize the centroid
-        dual_vertices.append(face_centroid)
-        face_to_vertex[face_index] = len(dual_vertices) - 1
+    vertices = [np.array(v) for v in vertices]  # Convert input vertices to numpy arrays
+    dual_vertices = [centroid([vertices[i] for i in face]) for face in faces]
+    vertex_to_adjacent_faces = {i: [f_idx for f_idx, f in enumerate(faces) if i in f] for i in range(len(vertices))}
 
     dual_faces = []
-    for vertex_index in range(len(vertices)):
-        adjacent_faces = [f_idx for f_idx, f in enumerate(faces) if vertex_index in f]
-        dual_face = sorted([face_to_vertex[f_idx] for f_idx in adjacent_faces])
-        dual_faces.append(dual_face)
+    for vertex_index, adjacent_faces in vertex_to_adjacent_faces.items():
+        sorted_faces = sort_adjacent_faces(dual_vertices, adjacent_faces, vertices[vertex_index])
+        dual_faces.append(sorted_faces)
 
     return dual_vertices, dual_faces
 
@@ -246,18 +266,20 @@ def project_to_sphere2(vertices, radius=2):
 
 #vertices, faces = project_to_sphere2(icosahedron_verts), icosahedron_faces
 vertices, faces  = icosahedron_verts, icosahedron_faces
+# bug
 #vertices, faces = kis_operator_9(vertices, faces)
 vertices, faces = kis_operator(vertices, faces)
 vertices, faces = kis_operator(vertices, faces)
 
-# bug
-# vertices, faces = dual_polyhedron(vertices, faces)
+vertices, faces = dual_polyhedron(vertices, faces)
 
 print("cosmin\n")
 print (len(vertices))
 print("cosmin\n")
 print (len(faces))
 print("cosmin\n")
+
+
 vertices = project_to_sphere2(vertices)
  #vertices, faces = kis_operator_9(icosahedron_vertices(), icosahedron_faces)
 #vertices, faces = dodecahedron_verts, dodecahedron_faces
@@ -287,9 +309,11 @@ ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
-ax.set_box_aspect([1,1,1])  # Equal aspect ratio
+ax.set_axis_off()
+ax.set_box_aspect([1, 1, 1])
 
 # View the plot from different angles
 ax.view_init(elev=20, azim=-35)
 
 plt.show()
+

@@ -250,14 +250,16 @@ def project_to_sphere2(vertices, radius=2):
 
 vertices, faces  = icosahedron_verts, icosahedron_faces
 
-# bug
-#vertices, faces = kis_operator_9(vertices, faces)
+# 180 Vertex
+# bug, too many vertices
+vertices, faces = kis_operator_9(vertices, faces)
+vertices, faces = dual_polyhedron(vertices, faces)
 
 # 240 Vertex
-vertices, faces = kis_operator(vertices, faces)
-vertices, faces = dual_polyhedron(vertices, faces)
-vertices, faces = divide_faces(vertices, faces)
-vertices, faces = dual_polyhedron(vertices, faces)
+# vertices, faces = kis_operator(vertices, faces)
+# vertices, faces = dual_polyhedron(vertices, faces)
+# vertices, faces = divide_faces(vertices, faces)
+# vertices, faces = dual_polyhedron(vertices, faces)
 
 # 320 Vertex
 # vertices, faces = kis_operator(vertices, faces)

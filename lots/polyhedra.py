@@ -2,6 +2,28 @@
 # -*- coding: utf-8 -*-
 
 import math
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
+def icosahedron_vertices():
+    phi = (1 + math.sqrt(5)) / 2
+    vertices = [
+        (-1, phi, 0),
+        (1, phi, 0),
+        (-1, -phi, 0),
+        (1, -phi, 0),
+
+        (0, -1, phi),
+        (0, 1, phi),
+        (0, -1, -phi),
+        (0, 1, -phi),
+
+        (phi, 0, -1),
+        (phi, 0, 1),
+        (-phi, 0, -1),
+        (-phi, 0, 1)
+    ]
+    return vertices
 
 icosahedron_faces = [
     (0, 11, 5),
@@ -59,25 +81,56 @@ def kis_operator(vertices, faces):
 
     return new_vertices, new_faces
 
-def icosahedron_vertices():
-    phi = (1 + math.sqrt(5)) / 2
-    vertices = [
-        (-1, phi, 0),
-        (1, phi, 0),
-        (-1, -phi, 0),
-        (1, -phi, 0),
 
-        (0, -1, phi),
-        (0, 1, phi),
-        (0, -1, -phi),
-        (0, 1, -phi),
+def kis_operator_9(vertices, faces):
+    new_faces = []
+    new_vertices = list(vertices)  # Make a copy of the original vertices
+    edge_point_indices = {}
+    face_centroid_indices = {}
+    for face in faces:
+        face_edge_points = []
+        for i in range(len(face)):
+            v1 = face[i]
+            v2 = face[(i + 1) % len(face)]
 
-        (phi, 0, -1),
-        (phi, 0, 1),
-        (-phi, 0, -1),
-        (-phi, 0, 1)
-    ]
-    return vertices
+            edge_key_1_3 = tuple(sorted([v1, v2])) + (1/3,)
+            edge_key_2_3 = tuple(sorted([v1, v2])) + (2/3,)
+            if edge_key_1_3 not in edge_point_indices:
+                point_1_3 = tuple(vertices[v1][j] + 1/3 * (vertices[v2][j] - vertices[v1][j]) for j in range(3))
+                point_1_3_idx = len(new_vertices)
+                edge_point_indices[edge_key_1_3] = point_1_3_idx
+                new_vertices.append(point_1_3)
+
+            if edge_key_2_3 not in edge_point_indices:
+                point_2_3 = tuple(vertices[v1][j] + 2/3 * (vertices[v2][j] - vertices[v1][j]) for j in range(3))
+                point_2_3_idx = len(new_vertices)
+                edge_point_indices[edge_key_2_3] = point_2_3_idx
+                new_vertices.append(point_2_3)
+
+            face_edge_points.append((edge_point_indices[edge_key_1_3], edge_point_indices[edge_key_2_3]))
+
+        face_centroid = centroid([vertices[i] for i in face])
+        face_centroid_idx = len(new_vertices)
+        face_centroid_indices[face] = face_centroid_idx
+        new_vertices.append(face_centroid)
+
+    for face in faces:
+        face_centroid_idx = face_centroid_indices[face]
+        for i in range(len(face)):
+            v1 = face[i]
+            v2 = face[(i + 1) % len(face)]
+            edge_point_idx_1_3, edge_point_idx_2_3 = face_edge_points[i]
+            next_edge_point_idx_1_3, next_edge_point_idx_2_3 = face_edge_points[(i + 1) % len(face)]
+
+            new_faces.append((v1, edge_point_idx_1_3, face_centroid_idx))
+            new_faces.append((edge_point_idx_1_3, edge_point_idx_2_3, face_centroid_idx))
+            new_faces.append((edge_point_idx_2_3, v2, face_centroid_idx))
+            new_faces.append((face_centroid_idx, edge_point_idx_1_3, next_edge_point_idx_1_3))
+            new_faces.append((face_centroid_idx, next_edge_point_idx_1_3, edge_point_idx_2_3))
+
+    return new_vertices, new_faces
+
+
 
 def centroid(vertices):
     x, y, z = 0, 0, 0
@@ -129,6 +182,14 @@ for i, vertex in enumerate(projected_icosahedron_verts, start=1):
     x, y, z, lat, lon = vertex
     print(f"Vertex {i}: Cartesian ({x}, {y}, {z}), Spherical (lat: {lat}, lon: {lon})")
 
+k9_verts, k9_faces = kis_operator_9(icosahedron_verts, icosahedron_faces);
+k9_verts, k9_faces = dual_polyhedron(k9_verts, k9_faces)
+projected_k9_verts = project_to_sphere(k9_verts);
+print("\nK9 vertices projected onto a sphere of radius 1 (with latitude and longitude):")
+for i, vertex in enumerate(projected_k9_verts, start=1):
+    x, y, z, lat, lon = vertex
+    print(f"Vertex {i}: Cartesian ({x}, {y}, {z}), Spherical (lat: {lat}, lon: {lon})")
+
 
 dodecahedron_verts, dodecahedron_faces = dual_polyhedron(icosahedron_verts, icosahedron_faces);
 projected_dodecahedron_verts = project_to_sphere(dodecahedron_verts)
@@ -157,3 +218,58 @@ print("\nC320 vertices projected onto a sphere of radius 1 (with latitude and lo
 for i, vertex in enumerate(projected_c320_verts, start=1):
     x, y, z, lat, lon = vertex
     print(f"Vertex {i}: Cartesian ({x}, {y}, {z}), Spherical (lat: {lat}, lon: {lon})")
+
+
+
+def project_to_sphere2(vertices, radius=2):
+    projected_vertices = []
+    for x, y, z in vertices:
+        length = math.sqrt(x**2 + y**2 + z**2)
+        x_proj, y_proj, z_proj = radius * x / length, radius * y / length, radius * z / length
+
+        # Convert to latitude and longitude
+        latitude = math.degrees(math.asin(z_proj / radius))
+        longitude = math.degrees(math.atan2(y_proj, x_proj))
+
+        projected_vertices.append((x_proj, y_proj, z_proj))
+    return projected_vertices
+
+vertices, faces = project_to_sphere2(icosahedron_verts), icosahedron_faces
+vertices, faces = kis_operator_9(vertices, faces)
+
+print("cosmin\n")
+print (len(vertices))
+print("cosmin\n")
+print (len(faces))
+print("cosmin\n")
+# bug
+#vertices, faces = dual_polyhedron(vertices, faces)
+vertices = project_to_sphere2(vertices)
+ #vertices, faces = kis_operator_9(icosahedron_vertices(), icosahedron_faces)
+#vertices, faces = dodecahedron_verts, dodecahedron_faces
+# vertices, faces = c320_verts, c320_faces
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+# Create a list of polygons for each face
+polygons = [[vertices[vertex_idx] for vertex_idx in face] for face in faces]
+
+# Create a Poly3DCollection object
+poly3d = Poly3DCollection(polygons, edgecolor='k', lw=1, alpha=0.5)
+
+# Add the polygons to the axes
+ax.add_collection3d(poly3d)
+
+# Set limits and labels
+ax.set_xlim([-2, 2])
+ax.set_ylim([-2, 2])
+ax.set_zlim([-2, 2])
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+
+# View the plot from different angles
+ax.view_init(elev=20, azim=-35)
+
+plt.show()

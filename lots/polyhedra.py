@@ -86,6 +86,9 @@ def centroid(vertices):
         y += vertex[1]
         z += vertex[2]
     return (x/len(vertices), y/len(vertices), z/len(vertices))
+def normalize(v):
+    norm = math.sqrt(v[0]**2 + v[1]**2 + v[2]**2)
+    return (v[0]/norm, v[1]/norm, v[2]/norm)
 
 def dual_polyhedron(vertices, faces):
     dual_vertices = []
@@ -93,39 +96,17 @@ def dual_polyhedron(vertices, faces):
     for face_index, face in enumerate(faces):
         face_vertices = [vertices[i] for i in face]
         face_centroid = centroid(face_vertices)
+        face_centroid = normalize(face_centroid)  # Normalize the centroid
         dual_vertices.append(face_centroid)
-        face_to_vertex[face_index] = face_centroid
+        face_to_vertex[face_index] = len(dual_vertices) - 1
 
-    dual_faces = {}
-    for face_index, face in enumerate(faces):
-        for i in range(len(face)):
-            v1 = face[i]
-            v2 = face[(i + 1) % len(face)]
-            edge_key = tuple(sorted([v1, v2]))
+    dual_faces = []
+    for vertex_index in range(len(vertices)):
+        adjacent_faces = [f_idx for f_idx, f in enumerate(faces) if vertex_index in f]
+        dual_face = sorted([face_to_vertex[f_idx] for f_idx in adjacent_faces])
+        dual_faces.append(dual_face)
 
-            # Find the two adjacent faces sharing this edge
-            adjacent_faces = [f_idx for f_idx, f in enumerate(faces) if v1 in f and v2 in f]
-            if len(adjacent_faces) != 2:
-                raise ValueError(f"Invalid polyhedron: Edge {edge_key} is not shared by exactly two faces")
-
-            f1, f2 = adjacent_faces
-            if edge_key not in dual_faces:
-                dual_faces[edge_key] = (f1, f2)
-
-    # Build the list of dual faces
-    dual_faces_list = []
-    for _, adjacent_faces in dual_faces.items():
-        f1, f2 = adjacent_faces
-        face1_vertex = face_to_vertex[f1]
-        face2_vertex = face_to_vertex[f2]
-
-        if face1_vertex not in dual_faces_list:
-            dual_faces_list.append(face1_vertex)
-        if face2_vertex not in dual_faces_list:
-            dual_faces_list.append(face2_vertex)
-
-    return dual_vertices, dual_faces_list
-
+    return dual_vertices, dual_faces
 
 def project_to_sphere(vertices, radius=1):
     projected_vertices = []
@@ -176,7 +157,3 @@ print("\nC320 vertices projected onto a sphere of radius 1 (with latitude and lo
 for i, vertex in enumerate(projected_c320_verts, start=1):
     x, y, z, lat, lon = vertex
     print(f"Vertex {i}: Cartesian ({x}, {y}, {z}), Spherical (lat: {lat}, lon: {lon})")
-
-
-
-

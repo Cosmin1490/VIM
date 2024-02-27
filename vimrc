@@ -143,6 +143,11 @@ endif
 
 colorscheme solarized
 
+" ----------- Copilot Configuration ----------------------------------
+"
+inoremap <silent> <Leader>cs <Plug>(copilot-suggest)
+
+
 " ----------- GoldenView Configuration ----------------------------------
 
 let g:goldenview__enable_at_startup = 0

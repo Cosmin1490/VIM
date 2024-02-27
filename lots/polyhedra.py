@@ -87,7 +87,6 @@ def kis_operator(vertices, faces):
 # TODO: fix duplicate vertices
 def kis_operator_9(vertices, faces):
     new_faces = []
-    #new_faces = list(faces)
     new_vertices = list(vertices)  # Make a copy of the original vertices
     edge_point_indices = {}
     face_centroid_indices = {}
@@ -151,9 +150,20 @@ def centroid(vertices):
         y += vertex[1]
         z += vertex[2]
     return (x/len(vertices), y/len(vertices), z/len(vertices))
+
 def normalize(v):
     norm = math.sqrt(v[0]**2 + v[1]**2 + v[2]**2)
     return (v[0]/norm, v[1]/norm, v[2]/norm)
+
+def angle(vertex, centroid):
+    dx, dy, dz = vertex[0] - centroid[0], vertex[1] - centroid[1], vertex[2] - centroid[2]
+    return math.atan2(dy, dx)
+
+def sort_face_vertices_ccw(face, vertices):
+    face_vertices = [vertices[i] for i in face]
+    face_centroid = centroid(face_vertices)
+    sorted_face = sorted(face, key=lambda v_idx: angle(vertices[v_idx], face_centroid))
+    return sorted_face
 
 def angle_between_vectors(v1, v2, ref):
     v1_normalized = normalize(v1 - ref)
@@ -267,10 +277,9 @@ def project_to_sphere2(vertices, radius=2):
 #vertices, faces = project_to_sphere2(icosahedron_verts), icosahedron_faces
 vertices, faces  = icosahedron_verts, icosahedron_faces
 # bug
-#vertices, faces = kis_operator_9(vertices, faces)
-vertices, faces = kis_operator(vertices, faces)
-vertices, faces = kis_operator(vertices, faces)
-
+vertices, faces = kis_operator_9(vertices, faces)
+#vertices, faces = kis_operator(vertices, faces)
+#vertices, faces = kis_operator(vertices, faces)
 vertices, faces = dual_polyhedron(vertices, faces)
 
 print("cosmin\n")
@@ -281,7 +290,7 @@ print("cosmin\n")
 
 
 vertices = project_to_sphere2(vertices)
- #vertices, faces = kis_operator_9(icosahedron_vertices(), icosahedron_faces)
+#vertices, faces = kis_operator_9(icosahedron_vertices(), icosahedron_faces)
 #vertices, faces = dodecahedron_verts, dodecahedron_faces
 # vertices, faces = c320_verts, c320_faces
 

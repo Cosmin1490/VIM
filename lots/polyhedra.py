@@ -291,7 +291,7 @@ ax.add_collection3d(poly3d)
 
 # Draw the vertices
 x, y, z = zip(*vertices)
-ax.scatter(x, y, z, color='r')
+ax.scatter(x, y, z, color='r', s=3)
 
 # Set limits and labels
 ax.set_xlim([-2, 2])

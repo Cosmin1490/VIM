@@ -252,8 +252,8 @@ vertices, faces  = icosahedron_verts, icosahedron_faces
 
 
 # 80 Vertex
-vertices, faces = kis_operator(vertices, faces)
-vertices, faces = dual_polyhedron(vertices, faces)
+#vertices, faces = kis_operator(vertices, faces)
+#vertices, faces = dual_polyhedron(vertices, faces)
 
 # 180 Vertex
 # bug, too many vertices
@@ -261,10 +261,10 @@ vertices, faces = dual_polyhedron(vertices, faces)
 #vertices, faces = dual_polyhedron(vertices, faces)
 
 # 240 Vertex
-# vertices, faces = kis_operator(vertices, faces)
-# vertices, faces = dual_polyhedron(vertices, faces)
-# vertices, faces = divide_faces(vertices, faces)
-# vertices, faces = dual_polyhedron(vertices, faces)
+vertices, faces = kis_operator(vertices, faces)
+vertices, faces = dual_polyhedron(vertices, faces)
+vertices, faces = divide_faces(vertices, faces)
+vertices, faces = dual_polyhedron(vertices, faces)
 
 # 320 Vertex
 # vertices, faces = kis_operator(vertices, faces)
@@ -284,7 +284,7 @@ ax = fig.add_subplot(111, projection='3d')
 polygons = [[vertices[vertex_idx] for vertex_idx in face] for face in faces]
 
 # Create a Poly3DCollection object
-poly3d = Poly3DCollection(polygons, edgecolor='k', lw=1, alpha=0.5)
+poly3d = Poly3DCollection(polygons, edgecolor='k', lw=1, alpha=0.9)
 
 # Add the polygons to the axes
 ax.add_collection3d(poly3d)

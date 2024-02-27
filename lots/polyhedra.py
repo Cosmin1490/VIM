@@ -26,7 +26,6 @@ def icosahedron_vertices():
         (-phi, 0, 1)
     ]
     return vertices
-
 icosahedron_faces = [
     (0, 11, 5),
     (0, 5, 1),
@@ -35,22 +34,22 @@ icosahedron_faces = [
     (0, 10, 11),
 
     (1, 5, 9),
-    (5, 11, 4),
-    (11, 10, 2),
-    (10, 7, 6),
-    (7, 1, 8),
+    (5, 4, 11),
+    (11, 2, 10),
+    (10, 6, 7),
+    (7, 8, 1),
 
     (3, 9, 4),
-    (3, 4, 2),
-    (3, 2, 6),
-    (3, 6, 8),
-    (3, 8, 9),
+    (2, 3, 4),
+    (6, 3, 2),
+    (8, 3, 6),
+    (9, 3, 8),
 
     (4, 9, 5),
-    (2, 4, 11),
-    (6, 2, 10),
-    (8, 6, 7),
-    (9, 8, 1)
+    (4, 11, 2),
+    (2, 6, 10),
+    (6, 8, 7),
+    (8, 9, 1),
 ]
 
 def kis_operator(vertices, faces):
@@ -119,8 +118,8 @@ def kis_operator_9(vertices, faces):
             v1 = face[i]
             v2 = face[(i + 1) % len(face)]
 
-            edge_key_1_3 = tuple(sorted([v1, v2])) + (1/3,)
-            edge_key_2_3 = tuple(sorted([v1, v2])) + (2/3,)
+            edge_key_1_3 = tuple([v1, v2]) + (1/3,)
+            edge_key_2_3 = tuple([v1, v2]) + (2/3,)
             point_1_3_idx = edge_point_indices[edge_key_1_3]
             point_2_3_idx = edge_point_indices[edge_key_2_3]
             face_centroid_idx = face_centroid_indices[face]
@@ -277,9 +276,9 @@ def project_to_sphere2(vertices, radius=2):
 #vertices, faces = project_to_sphere2(icosahedron_verts), icosahedron_faces
 vertices, faces  = icosahedron_verts, icosahedron_faces
 # bug
-vertices, faces = kis_operator_9(vertices, faces)
-#vertices, faces = kis_operator(vertices, faces)
-#vertices, faces = kis_operator(vertices, faces)
+#vertices, faces = kis_operator_9(vertices, faces)
+vertices, faces = kis_operator(vertices, faces)
+vertices, faces = kis_operator(vertices, faces)
 vertices, faces = dual_polyhedron(vertices, faces)
 
 print("cosmin\n")

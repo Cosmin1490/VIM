@@ -248,6 +248,7 @@ def project_to_sphere2(vertices, radius=2):
 vertices, faces  = icosahedron_verts, icosahedron_faces
 #vertices, faces = kis_operator_9(vertices, faces)
 vertices, faces = kis_operator(vertices, faces)
+vertices, faces = kis_operator(vertices, faces)
 
 # bug
 # vertices, faces = dual_polyhedron(vertices, faces)
@@ -285,6 +286,8 @@ ax.set_zlim([-2, 2])
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
+
+ax.set_box_aspect([1,1,1])  # Equal aspect ratio
 
 # View the plot from different angles
 ax.view_init(elev=20, azim=-35)

@@ -26,6 +26,8 @@ def icosahedron_vertices():
         (-phi, 0, 1)
     ]
     return vertices
+
+icosahedron_verts = icosahedron_vertices()
 icosahedron_faces = [
     (0, 11, 5),
     (0, 5, 1),
@@ -213,53 +215,6 @@ def project_to_sphere(vertices, radius=1):
         projected_vertices.append((x_proj, y_proj, z_proj, latitude, longitude))
     return projected_vertices
 
-
-icosahedron_verts = icosahedron_vertices()
-projected_icosahedron_verts = project_to_sphere(icosahedron_verts)
-print("\nIcosahedron vertices projected onto a sphere of radius 1 (with latitude and longitude):")
-for i, vertex in enumerate(projected_icosahedron_verts, start=1):
-    x, y, z, lat, lon = vertex
-    print(f"Vertex {i}: Cartesian ({x}, {y}, {z}), Spherical (lat: {lat}, lon: {lon})")
-
-k9_verts, k9_faces = kis_operator_9(icosahedron_verts, icosahedron_faces);
-k9_verts, k9_faces = dual_polyhedron(k9_verts, k9_faces)
-projected_k9_verts = project_to_sphere(k9_verts);
-print("\nK9 vertices projected onto a sphere of radius 1 (with latitude and longitude):")
-for i, vertex in enumerate(projected_k9_verts, start=1):
-    x, y, z, lat, lon = vertex
-    print(f"Vertex {i}: Cartesian ({x}, {y}, {z}), Spherical (lat: {lat}, lon: {lon})")
-
-
-dodecahedron_verts, dodecahedron_faces = dual_polyhedron(icosahedron_verts, icosahedron_faces);
-projected_dodecahedron_verts = project_to_sphere(dodecahedron_verts)
-print("\nDodecahedron vertices projected onto a sphere of radius 1 (with latitude and longitude):")
-for i, vertex in enumerate(projected_dodecahedron_verts, start=1):
-    x, y, z, lat, lon = vertex
-    print(f"Vertex {i}: Cartesian ({x}, {y}, {z}), Spherical (lat: {lat}, lon: {lon})")
-
-kis_vertices, kis_faces = kis_operator(icosahedron_verts, icosahedron_faces)
-projected_pentakis_icosidodecahedron_verts = project_to_sphere(kis_vertices)
-print("\nPentakis Icosidodecahedron vertices projected onto a sphere of radius 1 (with latitude and longitude):")
-for i, vertex in enumerate(projected_pentakis_icosidodecahedron_verts, start=1):
-    x, y, z, lat, lon = vertex
-    print(f"Vertex {i}: Cartesian ({x}, {y}, {z}), Spherical (lat: {lat}, lon: {lon})")
-
-kis_vertices2, kis_faces2 = kis_operator(kis_vertices, kis_faces)
-projected_kis2_verts = project_to_sphere(kis_vertices2)
-print("\nKis2 vertices projected onto a sphere of radius 1 (with latitude and longitude):")
-for i, vertex in enumerate(projected_kis2_verts, start=1):
-    x, y, z, lat, lon = vertex
-    print(f"Vertex {i}: Cartesian ({x}, {y}, {z}), Spherical (lat: {lat}, lon: {lon})")
-
-c320_verts, c320_faces= dual_polyhedron(kis_vertices2, kis_faces2);
-projected_c320_verts = project_to_sphere(c320_verts);
-print("\nC320 vertices projected onto a sphere of radius 1 (with latitude and longitude):")
-for i, vertex in enumerate(projected_c320_verts, start=1):
-    x, y, z, lat, lon = vertex
-    print(f"Vertex {i}: Cartesian ({x}, {y}, {z}), Spherical (lat: {lat}, lon: {lon})")
-
-
-
 def project_to_sphere2(vertices, radius=2):
     projected_vertices = []
     for x, y, z in vertices:
@@ -273,25 +228,17 @@ def project_to_sphere2(vertices, radius=2):
         projected_vertices.append((x_proj, y_proj, z_proj))
     return projected_vertices
 
-#vertices, faces = project_to_sphere2(icosahedron_verts), icosahedron_faces
 vertices, faces  = icosahedron_verts, icosahedron_faces
+
 # bug
 #vertices, faces = kis_operator_9(vertices, faces)
 vertices, faces = kis_operator(vertices, faces)
 vertices, faces = kis_operator(vertices, faces)
 vertices, faces = dual_polyhedron(vertices, faces)
 
-print("cosmin\n")
-print (len(vertices))
-print("cosmin\n")
-print (len(faces))
-print("cosmin\n")
-
+print ("Debug: vertices: " +  str(len(vertices)) + " faces: " + str(len(faces)))
 
 vertices = project_to_sphere2(vertices)
-#vertices, faces = kis_operator_9(icosahedron_vertices(), icosahedron_faces)
-#vertices, faces = dodecahedron_verts, dodecahedron_faces
-# vertices, faces = c320_verts, c320_faces
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')

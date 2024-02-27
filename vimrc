@@ -74,6 +74,8 @@ set nocp
    \    },
    \ }
 
+   NeoBundle 'github/copilot.vim'
+
    NeoBundle 'Cosmin1490/cbalanUltiSnips'
 
    call neobundle#end()          " required!

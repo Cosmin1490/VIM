@@ -54,6 +54,20 @@ icosahedron_faces = [
     (8, 9, 1),
 ]
 
+def divide_faces(vertices, faces):
+    new_faces = []
+    new_vertices = list(vertices)  # Make a copy of the original vertices
+
+    for face in faces:
+        face_centroid = centroid([vertices[v] for v in face])
+        centroid_idx = len(new_vertices)
+        new_vertices.append(face_centroid)
+
+        new_tri_faces = [(face[i], face[(i + 1) % len(face)], centroid_idx) for i in range(len(face))]
+        new_faces.extend(new_tri_faces)
+
+    return new_vertices, new_faces
+
 def kis_operator(vertices, faces):
     new_faces = []
     new_vertices = list(vertices)  # Make a copy of the original vertices
@@ -232,8 +246,11 @@ vertices, faces  = icosahedron_verts, icosahedron_faces
 
 # bug
 #vertices, faces = kis_operator_9(vertices, faces)
+
+# 240 Vertex
 vertices, faces = kis_operator(vertices, faces)
-vertices, faces = kis_operator(vertices, faces)
+vertices, faces = dual_polyhedron(vertices, faces)
+vertices, faces = divide_faces(vertices, faces)
 vertices, faces = dual_polyhedron(vertices, faces)
 
 print ("Debug: vertices: " +  str(len(vertices)) + " faces: " + str(len(faces)))

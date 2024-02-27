@@ -229,6 +229,12 @@ def project_to_sphere(vertices, radius=1):
         projected_vertices.append((x_proj, y_proj, z_proj, latitude, longitude))
     return projected_vertices
 
+def print_projected_vertices(projected_vertices):
+    print("Index |        X        |        Y        |        Z        |   Latitude   |  Longitude")
+    print("------|-----------------|-----------------|-----------------|--------------|------------")
+    for idx, vertex in enumerate(projected_vertices):
+        print("{:5d} | {: 15.8f} | {: 15.8f} | {: 15.8f} | {: 13.7f} | {: 13.7f}".format(idx, *vertex))
+
 def project_to_sphere2(vertices, radius=2):
     projected_vertices = []
     for x, y, z in vertices:
@@ -255,6 +261,8 @@ vertices, faces = dual_polyhedron(vertices, faces)
 
 print ("Debug: vertices: " +  str(len(vertices)) + " faces: " + str(len(faces)))
 
+
+print_projected_vertices(project_to_sphere(vertices))
 vertices = project_to_sphere2(vertices)
 
 fig = plt.figure()

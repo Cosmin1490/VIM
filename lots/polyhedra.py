@@ -82,19 +82,21 @@ def kis_operator(vertices, faces):
     return new_vertices, new_faces
 
 
+# TODO: fix duplicate vertices
 def kis_operator_9(vertices, faces):
     new_faces = []
+    #new_faces = list(faces)
     new_vertices = list(vertices)  # Make a copy of the original vertices
     edge_point_indices = {}
     face_centroid_indices = {}
+
     for face in faces:
-        face_edge_points = []
         for i in range(len(face)):
             v1 = face[i]
             v2 = face[(i + 1) % len(face)]
 
-            edge_key_1_3 = tuple(sorted([v1, v2])) + (1/3,)
-            edge_key_2_3 = tuple(sorted([v1, v2])) + (2/3,)
+            edge_key_1_3 = tuple([v1, v2]) + (1/3,)
+            edge_key_2_3 = tuple([v1, v2]) + (2/3,)
             if edge_key_1_3 not in edge_point_indices:
                 point_1_3 = tuple(vertices[v1][j] + 1/3 * (vertices[v2][j] - vertices[v1][j]) for j in range(3))
                 point_1_3_idx = len(new_vertices)
@@ -106,31 +108,39 @@ def kis_operator_9(vertices, faces):
                 point_2_3_idx = len(new_vertices)
                 edge_point_indices[edge_key_2_3] = point_2_3_idx
                 new_vertices.append(point_2_3)
-
-            face_edge_points.append((edge_point_indices[edge_key_1_3], edge_point_indices[edge_key_2_3]))
-
         face_centroid = centroid([vertices[i] for i in face])
         face_centroid_idx = len(new_vertices)
         face_centroid_indices[face] = face_centroid_idx
         new_vertices.append(face_centroid)
 
     for face in faces:
-        face_centroid_idx = face_centroid_indices[face]
         for i in range(len(face)):
             v1 = face[i]
             v2 = face[(i + 1) % len(face)]
-            edge_point_idx_1_3, edge_point_idx_2_3 = face_edge_points[i]
-            next_edge_point_idx_1_3, next_edge_point_idx_2_3 = face_edge_points[(i + 1) % len(face)]
 
-            new_faces.append((v1, edge_point_idx_1_3, face_centroid_idx))
-            new_faces.append((edge_point_idx_1_3, edge_point_idx_2_3, face_centroid_idx))
-            new_faces.append((edge_point_idx_2_3, v2, face_centroid_idx))
-            new_faces.append((face_centroid_idx, edge_point_idx_1_3, next_edge_point_idx_1_3))
-            new_faces.append((face_centroid_idx, next_edge_point_idx_1_3, edge_point_idx_2_3))
+            edge_key_1_3 = tuple(sorted([v1, v2])) + (1/3,)
+            edge_key_2_3 = tuple(sorted([v1, v2])) + (2/3,)
+            point_1_3_idx = edge_point_indices[edge_key_1_3]
+            point_2_3_idx = edge_point_indices[edge_key_2_3]
+            face_centroid_idx = face_centroid_indices[face]
+
+            new_faces.append((point_1_3_idx, point_2_3_idx, face_centroid_idx))
+
+        for i in range(len(face)):
+            v1 = face[i]
+            v2 = face[(i + 1) % len(face)]
+            v3 = face[(i + 2) % len(face)]
+
+            edge_1_key_2_3 = tuple([v1, v2]) + (2/3,)
+            edge_2_key_1_3 = tuple([v2, v3]) + (1/3,)
+            edge_1_point_2_3_idx = edge_point_indices[edge_1_key_2_3]
+            edge_2_point_1_3_idx = edge_point_indices[edge_2_key_1_3]
+            face_centroid_idx = face_centroid_indices[face]
+
+            new_faces.append((edge_1_point_2_3_idx, v2, edge_2_point_1_3_idx))
+            new_faces.append((edge_1_point_2_3_idx, face_centroid_idx, edge_2_point_1_3_idx))
 
     return new_vertices, new_faces
-
-
 
 def centroid(vertices):
     x, y, z = 0, 0, 0
@@ -234,16 +244,19 @@ def project_to_sphere2(vertices, radius=2):
         projected_vertices.append((x_proj, y_proj, z_proj))
     return projected_vertices
 
-vertices, faces = project_to_sphere2(icosahedron_verts), icosahedron_faces
+#vertices, faces = project_to_sphere2(icosahedron_verts), icosahedron_faces
+vertices, faces  = icosahedron_verts, icosahedron_faces
 vertices, faces = kis_operator_9(vertices, faces)
+#vertices, faces = kis_operator(vertices, faces)
+
+# bug
+# vertices, faces = dual_polyhedron(vertices, faces)
 
 print("cosmin\n")
 print (len(vertices))
 print("cosmin\n")
 print (len(faces))
 print("cosmin\n")
-# bug
-#vertices, faces = dual_polyhedron(vertices, faces)
 vertices = project_to_sphere2(vertices)
  #vertices, faces = kis_operator_9(icosahedron_vertices(), icosahedron_faces)
 #vertices, faces = dodecahedron_verts, dodecahedron_faces

@@ -246,8 +246,8 @@ def project_to_sphere2(vertices, radius=2):
 
 #vertices, faces = project_to_sphere2(icosahedron_verts), icosahedron_faces
 vertices, faces  = icosahedron_verts, icosahedron_faces
-vertices, faces = kis_operator_9(vertices, faces)
-#vertices, faces = kis_operator(vertices, faces)
+#vertices, faces = kis_operator_9(vertices, faces)
+vertices, faces = kis_operator(vertices, faces)
 
 # bug
 # vertices, faces = dual_polyhedron(vertices, faces)
@@ -273,6 +273,10 @@ poly3d = Poly3DCollection(polygons, edgecolor='k', lw=1, alpha=0.5)
 
 # Add the polygons to the axes
 ax.add_collection3d(poly3d)
+
+# Draw the vertices
+x, y, z = zip(*vertices)
+ax.scatter(x, y, z, color='r')
 
 # Set limits and labels
 ax.set_xlim([-2, 2])
